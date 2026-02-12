@@ -50,7 +50,7 @@ export default function HeroContent() {
                     transition={{ delay: 0.4 }}
                     className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed mb-10 font-light"
                 >
-                    Líder em tecnologia de Lítio no Rio Grande do Sul. Logística inteligência para Caxias do Sul e Porto Alegre.
+                    Líder em tecnologia de Lítio no Rio Grande do Sul. Logística inteligência.
                 </motion.p>
 
                 <motion.div
