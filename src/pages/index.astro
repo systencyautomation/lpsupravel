@@ -16,15 +16,6 @@ import SEO from '../components/SEO.astro';
 		<meta name="generator" content={Astro.generator} />
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        
-        {/* Non-blocking font loading */}
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" media="print" onload="this.media='all'">
-        
-        <noscript>
-            <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-            <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-        </noscript>
 	</head>
 	<body class="bg-background-dark text-gray-100 antialiased selection:bg-primary selection:text-white">
         <Navbar />
@@ -33,5 +24,25 @@ import SEO from '../components/SEO.astro';
         <Performance />
         <Calculator />
         <Support />
+        
+        <!-- Non-blocking font loading via JS -->
+        <script is:inline>
+            (function() {
+                var fonts = [
+                    'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap',
+                    'https://fonts.googleapis.com/icon?family=Material+Icons+Round'
+                ];
+                fonts.forEach(function(href) {
+                    var link = document.createElement('link');
+                    link.rel = 'stylesheet';
+                    link.href = href;
+                    document.head.appendChild(link);
+                });
+            })();
+        </script>
+        <noscript>
+            <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+        </noscript>
 	</body>
 </html>
