@@ -10,7 +10,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
     preview: {
-      allowedHosts: ['lp.supravelconnect.com.br']
+      allowedHosts: true,
     }
   },
 
