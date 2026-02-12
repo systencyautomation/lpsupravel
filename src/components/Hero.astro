@@ -2,8 +2,8 @@
 ---
 
 <section class="relative min-h-screen flex flex-col justify-center overflow-hidden">
-  <div class="fixed inset-0 z-0 pointer-events-none opacity-[0.15] bg-grid-pattern"></div>
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] hero-glow pointer-events-none will-change-transform"></div>
+  <div class="absolute inset-0 z-0 pointer-events-none opacity-[0.15] bg-grid-pattern"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] hero-glow pointer-events-none"></div>
   
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 font-display pt-32 md:pt-40 text-center">
     <!-- Static Badge -->
@@ -56,6 +56,7 @@
                 height="675"
                 fetchpriority="high"
                 loading="eager"
+                decoding="async"
             />
             <div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent opacity-60"></div>
 
