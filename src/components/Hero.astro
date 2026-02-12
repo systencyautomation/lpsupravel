@@ -1,0 +1,10 @@
+---
+import HeroContent from './HeroContent.tsx';
+---
+
+<section class="relative min-h-screen flex flex-col justify-center overflow-hidden">
+  <div class="fixed inset-0 z-0 pointer-events-none opacity-[0.15] bg-grid-pattern"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] hero-glow pointer-events-none"></div>
+  
+  <HeroContent client:load />
+</section>

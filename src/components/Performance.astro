@@ -1,0 +1,247 @@
+---
+---
+
+<section class="relative py-24 px-6 overflow-hidden">
+    <!-- Header -->
+    <div class="text-center mb-16 relative z-10">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-medium text-white/70 mb-4">
+            <span class="w-2 h-2 rounded-full bg-[#00A499] animate-pulse"></span>
+            Tecnologia Lítio de 3ª Geração
+        </div>
+        <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tight mb-4 bg-gradient-to-br from-white via-white to-white/40 bg-clip-text text-transparent">
+            Vantagem do Lítio
+        </h2>
+        <p class="text-white/40 text-lg max-w-2xl mx-auto font-light">
+            Supere os motores a combustão com maior eficiência, zero emissões e menor custo total de propriedade.
+        </p>
+    </div>
+
+    <!-- Bento Grid Comparison -->
+    <div class="bento-grid relative max-w-7xl mx-auto z-10">
+        <!-- VS Badge (Absolute Center for Desktop) -->
+        <div class="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background-dark border border-white/10 items-center justify-center z-20 shadow-xl shadow-black/50">
+            <span class="text-xs font-bold text-white/30">VS</span>
+        </div>
+        <div class="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/5 to-transparent -translate-x-1/2 z-0"></div>
+
+        <!-- LEFT SIDE: COMBUSTION (Legacy/Muted) -->
+        <!-- Card 1: Main Combustion Hero -->
+        <div class="lg:col-span-6 lg:row-span-6 glass-card rounded-xl p-8 relative overflow-hidden group">
+            <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="relative z-10 h-full flex flex-col justify-between">
+                <div class="flex items-start justify-between">
+                    <div>
+                        <h3 class="text-xl font-medium text-white/80">Combustão (IC)</h3>
+                        <p class="text-sm text-white/40 mt-1">Legado Diesel / GLP</p>
+                    </div>
+                    <span class="material-icons-round text-white/20">local_gas_station</span>
+                </div>
+                <div class="mt-8 flex-grow flex items-center justify-center relative">
+                    <!-- Abstract Representation of Combustion Engine -->
+                    <div class="w-32 h-32 rounded-full border border-white/10 flex items-center justify-center relative">
+                        <div class="absolute inset-0 border border-white/5 rounded-full scale-125 border-dashed animate-[spin_10s_linear_infinite]"></div>
+                        <span class="material-icons-round text-4xl text-white/20">settings</span>
+                    </div>
+                </div>
+                <div class="mt-6 grid grid-cols-2 gap-4">
+                    <div class="bg-black/20 rounded p-3">
+                        <p class="text-xs text-white/40 uppercase tracking-wider">Eficiência</p>
+                        <p class="text-lg font-semibold text-white/60">~20-30%</p>
+                    </div>
+                    <div class="bg-black/20 rounded p-3">
+                        <p class="text-xs text-white/40 uppercase tracking-wider">Emissões</p>
+                        <p class="text-lg font-semibold text-orange-400/70">Alto</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2: Combustion Maintenance Costs -->
+        <div class="lg:col-span-3 lg:row-span-6 glass-card rounded-xl p-6 flex flex-col">
+            <div class="flex items-center gap-2 mb-4">
+                <span class="material-icons-round text-white/30 text-lg">build</span>
+                <h4 class="text-sm font-medium text-white/70">Manutenção</h4>
+            </div>
+            <div class="flex-grow flex items-end gap-2 px-2 pb-2 border-b border-white/5">
+                <!-- Bar Chart for High Maintenance -->
+                <div class="w-full bg-white/5 rounded-t h-[40%] relative group cursor-help transition-all hover:bg-white/10">
+                    <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-black text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-white/10 pointer-events-none z-30">Ano 1</div>
+                </div>
+                <div class="w-full bg-white/10 rounded-t h-[60%] relative group cursor-help transition-all hover:bg-white/20">
+                    <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-black text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-white/10 pointer-events-none z-30">Ano 3</div>
+                </div>
+                <div class="w-full bg-primary/40 rounded-t h-[90%] relative group cursor-help transition-all hover:bg-primary/50">
+                    <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-black text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-white/10 pointer-events-none z-30">Ano 5</div>
+                </div>
+            </div>
+            <p class="text-xs text-white/40 mt-3">Custos aumentam drasticamente com peças móveis.</p>
+        </div>
+
+        <!-- Card 3: Fueling Downtime -->
+        <div class="lg:col-span-3 lg:row-span-6 glass-card rounded-xl p-6 flex flex-col justify-between">
+            <div>
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="material-icons-round text-white/30 text-lg">schedule</span>
+                    <h4 class="text-sm font-medium text-white/70">Downtime (Paradas)</h4>
+                </div>
+                <p class="text-2xl font-bold text-white/80">15m <span class="text-sm font-normal text-white/40">/ turno</span></p>
+            </div>
+            <div class="w-full bg-white/5 rounded-full h-1.5 mt-4 overflow-hidden">
+                <div class="bg-white/20 h-full w-[70%]"></div>
+            </div>
+            <p class="text-xs text-white/40 mt-4">Necessário para reabastecimento ou troca.</p>
+        </div>
+
+        <!-- RIGHT SIDE: LITHIUM (Premium/Glowing) -->
+        <!-- Card 4: Main Lithium Hero -->
+        <div class="lg:col-span-6 lg:row-span-6 glass-card rounded-xl p-8 relative overflow-hidden group border-[#00A499]/30 shadow-[0_0_30px_-10px_rgba(0,164,153,0.15)]">
+            <!-- Glowing background effect -->
+            <div class="absolute -right-20 -top-20 w-64 h-64 bg-[#00A499]/20 rounded-full blur-[80px]"></div>
+            <div class="relative z-10 h-full flex flex-col justify-between">
+                <div class="flex items-start justify-between">
+                    <div>
+                        <h3 class="text-xl font-medium text-white">Lítio-Ion</h3>
+                        <p class="text-sm text-[#00A499] mt-1 font-medium">Série Supravel Advanced</p>
+                    </div>
+                    <span class="material-icons-round text-[#00A499]">electric_bolt</span>
+                </div>
+                <div class="mt-8 flex-grow flex items-center justify-center">
+                    <!-- Abstract Representation of Lithium Battery -->
+                    <div class="relative w-full max-w-[200px] h-24 bg-gradient-to-r from-[#00A499]/10 to-transparent rounded border border-[#00A499]/30 flex items-center justify-center overflow-hidden">
+                        <div class="absolute inset-0 opacity-50 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImEiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgNDBMODAgMCIgc3Ryb2tlPSJyZ2JhKDAsIDE2NCwgMTUzLCAwLjEpIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjYSkiLz48L3N2Zz4=')]"></div>
+                        <!-- Animated Pulse Line -->
+                        <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-[#00A499] shadow-[0_0_10px_#00A499]"></div>
+                        <span class="text-3xl font-bold text-white tracking-widest z-10">Li-ION</span>
+                    </div>
+                </div>
+                <div class="mt-6 grid grid-cols-2 gap-4">
+                    <div class="bg-[#00A499]/10 border border-[#00A499]/20 rounded p-3">
+                        <p class="text-xs text-[#00A499] uppercase tracking-wider">Eficiência</p>
+                        <p class="text-lg font-semibold text-white">98%</p>
+                    </div>
+                    <div class="bg-[#00A499]/10 border border-[#00A499]/20 rounded p-3">
+                        <p class="text-xs text-[#00A499] uppercase tracking-wider">Emissões</p>
+                        <p class="text-lg font-semibold text-white">Zero</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 5: Lithium Savings (Highlighted) -->
+        <div class="lg:col-span-3 lg:row-span-6 glass-card rounded-xl p-6 flex flex-col relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-16 h-16 bg-primary/20 rounded-full blur-[40px]"></div>
+            <div class="flex items-center gap-2 mb-4">
+                <span class="material-icons-round text-[#00A499] text-lg">savings</span>
+                <h4 class="text-sm font-medium text-white/90">Economia Total</h4>
+            </div>
+            <div class="flex-grow flex items-end justify-between gap-1 relative">
+                <!-- Line Graph SVG -->
+                <svg class="w-full h-24 overflow-visible" preserveAspectRatio="none" viewBox="0 0 100 60">
+                    <!-- Grid lines -->
+                    <line stroke="rgba(255,255,255,0.1)" stroke-width="1" x1="0" x2="100" y1="60" y2="60"></line>
+                    <line stroke="rgba(255,255,255,0.05)" stroke-dasharray="2" stroke-width="1" x1="0" x2="100" y1="30" y2="30"></line>
+                    <!-- Data Line -->
+                    <path d="M0,50 Q30,45 50,30 T100,5" fill="none" stroke="#00A499" stroke-width="2"></path>
+                    <!-- Area under curve -->
+                    <path d="M0,50 Q30,45 50,30 T100,5 V60 H0 Z" fill="url(#gradient-teal)" opacity="0.2"></path>
+                    <defs>
+                        <linearGradient id="gradient-teal" x1="0%" x2="0%" y1="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#00A499;stop-opacity:1"></stop>
+                            <stop offset="100%" style="stop-color:#00A499;stop-opacity:0"></stop>
+                        </linearGradient>
+                    </defs>
+                    <!-- Point -->
+                    <circle cx="100" cy="5" fill="#ea2a33" r="3" stroke="white" stroke-width="1"></circle>
+                </svg>
+            </div>
+            <div class="mt-3 flex justify-between items-end">
+                <p class="text-xs text-white/40">TCO em 5 Anos</p>
+                <p class="text-lg font-bold text-primary">-40%</p>
+            </div>
+        </div>
+
+        <!-- Card 6: Opportunity Charging -->
+        <div class="lg:col-span-3 lg:row-span-6 glass-card rounded-xl p-6 flex flex-col justify-between">
+            <div>
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="material-icons-round text-[#00A499] text-lg">battery_charging_full</span>
+                    <h4 class="text-sm font-medium text-white/90">Carregamento</h4>
+                </div>
+                <p class="text-2xl font-bold text-white">Carga <span class="text-sm font-normal text-[#00A499]">Rápida</span></p>
+            </div>
+            <div class="relative py-4">
+                <div class="flex items-center justify-between text-xs text-white/40 mb-1">
+                    <span>Pausas</span>
+                    <span>Almoço</span>
+                    <span>Turno</span>
+                </div>
+                <div class="flex gap-1 h-2">
+                    <div class="flex-1 bg-[#00A499] rounded-sm opacity-60"></div>
+                    <div class="flex-1 bg-[#00A499] rounded-sm opacity-80"></div>
+                    <div class="flex-1 bg-[#00A499] rounded-sm"></div>
+                </div>
+            </div>
+            <p class="text-xs text-white/40 mt-1">Carregue durante pausas. Sem resfriamento.</p>
+        </div>
+
+        <!-- Footer Spanning Row (Call to Action) -->
+        <div class="lg:col-span-12 lg:row-span-2 glass-card rounded-xl p-6 flex flex-col md:flex-row items-center justify-between gap-6 border-t border-primary/20 bg-gradient-to-r from-transparent via-primary/5 to-transparent">
+            <div class="flex items-center gap-4">
+                <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary border border-primary/30">
+                    <span class="material-icons-round">calculate</span>
+                </div>
+                <div>
+                    <h3 class="text-lg font-medium text-white">Calcule a economia da sua frota</h3>
+                    <p class="text-sm text-white/40">Veja exatamente quanto pode economizar mudando para Lítio.</p>
+                </div>
+            </div>
+            <div class="flex gap-4">
+                <button class="px-6 py-2.5 rounded-lg border border-white/10 text-white text-sm font-medium hover:bg-white/5 transition-colors cursor-pointer">
+                    Ver Especificações
+                </button>
+                <button class="px-6 py-2.5 rounded-lg bg-primary hover:bg-primary-dark text-white text-sm font-medium shadow-[0_0_20px_-5px_#ea2a33] transition-all hover:shadow-[0_0_25px_-5px_#ea2a33] flex items-center gap-2 cursor-pointer">
+                    Mudar para Lítio
+                    <span class="material-icons-round text-sm">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Detailed Tech Spec Strip -->
+<section class="border-t border-white/5 bg-black/20 backdrop-blur-sm py-12">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div class="flex flex-col gap-2 border-l border-white/5 pl-6">
+            <span class="text-xs font-mono uppercase text-white/30 tracking-widest">Vida Útil Bateria</span>
+            <span class="text-2xl font-light text-white">3.000+ <span class="text-sm text-white/40">Ciclos</span></span>
+        </div>
+        <div class="flex flex-col gap-2 border-l border-white/5 pl-6">
+            <span class="text-xs font-mono uppercase text-white/30 tracking-widest">Garantia</span>
+            <span class="text-2xl font-light text-white">5 <span class="text-sm text-white/40">Anos</span></span>
+        </div>
+        <div class="flex flex-col gap-2 border-l border-white/5 pl-6">
+            <span class="text-xs font-mono uppercase text-white/30 tracking-widest">Manutenção</span>
+            <span class="text-2xl font-light text-white">0 <span class="text-sm text-white/40">Horas</span></span>
+        </div>
+        <div class="flex flex-col gap-2 border-l border-white/5 pl-6">
+            <span class="text-xs font-mono uppercase text-white/30 tracking-widest">Retorno (ROI)</span>
+            <span class="text-2xl font-light text-white">18 <span class="text-sm text-white/40">Meses</span></span>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* CSS Grid Configuration for Bento Grid */
+    .bento-grid {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1.5rem;
+    }
+    @media (min-width: 1024px) {
+        .bento-grid {
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: repeat(12, minmax(0, 1fr));
+            height: 800px;
+        }
+    }
+</style>

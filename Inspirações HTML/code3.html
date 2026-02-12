@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Interactive ROI Calculator - Supravel/Tría</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ea2a33",
+                        "primary-dark": "#b91c23",
+                        "accent-cyan": "#00A499",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#0B0C0E",
+                        "surface-dark": "#141518",
+                        "border-dark": "#2E2E32",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "mono": ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"],
+                    },
+                    boxShadow: {
+                        'glow': '0 0 20px -5px rgba(234, 42, 51, 0.5)',
+                        'glow-cyan': '0 0 20px -5px rgba(0, 164, 153, 0.3)',
+                    }
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #ffffff;
+            cursor: pointer;
+            margin-top: -8px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            border: 2px solid #ea2a33;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #2E2E32;
+            border-radius: 2px;
+        }
+        input[type=range]:focus::-webkit-slider-runnable-track {
+            background: #3E3E42;
+        }.chart-line {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: dash 2s ease-out forwards;
+        }
+        @keyframes dash {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+        .glass-panel {
+            background: rgba(20, 21, 24, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200 font-display min-h-screen flex flex-col">
+<nav class="w-full border-b border-gray-200 dark:border-border-dark bg-white/80 dark:bg-surface-dark/80 backdrop-blur-md sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-16">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-glow">T</div>
+<span class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Supravel<span class="text-primary">Tría</span></span>
+</div>
+<span class="hidden sm:inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 dark:bg-white/5 text-gray-800 dark:text-gray-300 border border-gray-200 dark:border-white/10">
+                    ROI Calculator v2.4
+                </span>
+</div>
+<div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+<a class="text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors" href="#">Products</a>
+<a class="text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors" href="#">Technology</a>
+<a class="text-white bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg transition-all shadow-glow text-xs uppercase tracking-wide font-semibold" href="#">Contact Sales</a>
+</div>
+<div class="md:hidden">
+<button class="text-gray-400 hover:text-white">
+<span class="material-icons">menu</span>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<main class="flex-grow flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-primary/10 blur-[120px] rounded-full pointer-events-none z-0 opacity-40"></div>
+<div class="absolute bottom-0 right-0 w-[600px] h-[400px] bg-accent-cyan/5 blur-[100px] rounded-full pointer-events-none z-0 opacity-30"></div>
+<div class="relative z-10 max-w-7xl mx-auto w-full">
+<div class="text-center mb-10 space-y-4">
+<h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight">
+                Calculate Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-500">Efficiency Edge</span>
+</h1>
+<p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-light">
+                Visualize the impact of switching your fleet to Tría Lithium technology. Select your model and input your metrics.
+            </p>
+</div>
+<section class="mb-10">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 dark:text-gray-400">Step 1: Select Forklift Model</h3>
+<span class="text-[10px] text-gray-500 font-mono">4 Models Available</span>
+</div>
+<div class="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
+<div class="flex-shrink-0 w-64 glass-panel rounded-xl p-4 border-primary ring-1 ring-primary/50 cursor-pointer group transition-all">
+<div class="flex justify-between items-start mb-3">
+<span class="text-[10px] px-2 py-0.5 rounded-full bg-primary/20 text-primary font-bold uppercase tracking-tighter">Selected</span>
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+</div>
+<h4 class="text-white font-semibold mb-1">T-Series Compact</h4>
+<p class="text-xs text-gray-500 mb-4">Electric Pallet Truck (1.5t - 2.0t)</p>
+<div class="flex items-center gap-2 text-[10px] font-mono text-gray-400">
+<span class="flex items-center gap-1"><span class="material-icons text-[12px]">bolt</span> 24V/48V</span>
+<span class="w-1 h-1 bg-gray-600 rounded-full"></span>
+<span class="flex items-center gap-1"><span class="material-icons text-[12px]">timer</span> 2h Charge</span>
+</div>
+</div>
+<div class="flex-shrink-0 w-64 glass-panel rounded-xl p-4 border-border-dark hover:border-gray-500 cursor-pointer group transition-all">
+<div class="flex justify-between items-start mb-3">
+<span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-800 text-gray-400 font-bold uppercase tracking-tighter">Mid-Range</span>
+</div>
+<h4 class="text-white font-semibold mb-1">R-Series Reach</h4>
+<p class="text-xs text-gray-500 mb-4">High Performance Reach (1.6t - 2.5t)</p>
+<div class="flex items-center gap-2 text-[10px] font-mono text-gray-400">
+<span class="flex items-center gap-1"><span class="material-icons text-[12px]">bolt</span> 48V/80V</span>
+<span class="w-1 h-1 bg-gray-600 rounded-full"></span>
+<span class="flex items-center gap-1"><span class="material-icons text-[12px]">timer</span> 1.5h Charge</span>
+</div>
+</div>
+<div class="flex-shrink-0 w-64 glass-panel rounded-xl p-4 border-border-dark hover:border-gray-500 cursor-pointer group transition-all">
+<div class="flex justify-between items-start mb-3">
+<span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-800 text-gray-400 font-bold uppercase tracking-tighter">Heavy Duty</span>
+</div>
+<h4 class="text-white font-semibold mb-1">X-Series Counterbalance</h4>
+<p class="text-xs text-gray-500 mb-4">Outdoor/Indoor Electric (3.0t - 5.0t)</p>
+<div class="flex items-center gap-2 text-[10px] font-mono text-gray-400">
+<span class="flex items-center gap-1"><span class="material-icons text-[12px]">bolt</span> 80V</span>
+<span class="w-1 h-1 bg-gray-600 rounded-full"></span>
+<span class="flex items-center gap-1"><span class="material-icons text-[12px]">timer</span> 1h Charge</span>
+</div>
+</div>
+<div class="flex-shrink-0 w-64 glass-panel rounded-xl p-4 border-border-dark hover:border-gray-500 cursor-pointer group transition-all">
+<div class="flex justify-between items-start mb-3">
+<span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-800 text-gray-400 font-bold uppercase tracking-tighter">VNA Expert</span>
+</div>
+<h4 class="text-white font-semibold mb-1">V-Series VNA</h4>
+<p class="text-xs text-gray-500 mb-4">Very Narrow Aisle (1.0t - 1.5t)</p>
+<div class="flex items-center gap-2 text-[10px] font-mono text-gray-400">
+<span class="flex items-center gap-1"><span class="material-icons text-[12px]">bolt</span> 48V/80V</span>
+<span class="w-1 h-1 bg-gray-600 rounded-full"></span>
+<span class="flex items-center gap-1"><span class="material-icons text-[12px]">timer</span> 2h Charge</span>
+</div>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<div class="lg:col-span-4 space-y-6">
+<div class="glass-panel rounded-xl p-6 md:p-8 shadow-2xl h-full flex flex-col justify-between">
+<div class="space-y-8">
+<div class="flex items-center justify-between mb-2">
+<h3 class="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Step 2: Configuration</h3>
+<button class="text-xs text-primary hover:text-white transition-colors flex items-center gap-1">
+<span class="material-icons text-[16px]">restart_alt</span> Reset
+                            </button>
+</div>
+<div class="group">
+<div class="flex justify-between items-end mb-4">
+<label class="block text-sm font-medium text-gray-700 dark:text-gray-200">Fleet Size</label>
+<div class="flex items-center bg-gray-100 dark:bg-black border border-gray-300 dark:border-border-dark rounded px-2 py-1 focus-within:border-primary transition-colors">
+<input class="w-12 bg-transparent text-right text-sm font-mono focus:outline-none dark:text-white" max="100" min="1" type="number" value="24"/>
+<span class="text-xs text-gray-500 ml-1">units</span>
+</div>
+</div>
+<input class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" max="100" min="1" type="range" value="24"/>
+<div class="flex justify-between mt-2 text-xs text-gray-500 font-mono">
+<span>1</span>
+<span>50</span>
+<span>100</span>
+</div>
+</div>
+<div class="group">
+<div class="flex justify-between items-end mb-4">
+<label class="block text-sm font-medium text-gray-700 dark:text-gray-200">Avg. Shift Hours</label>
+<div class="flex items-center bg-gray-100 dark:bg-black border border-gray-300 dark:border-border-dark rounded px-2 py-1 focus-within:border-primary transition-colors">
+<input class="w-12 bg-transparent text-right text-sm font-mono focus:outline-none dark:text-white" max="24" min="4" type="number" value="12"/>
+<span class="text-xs text-gray-500 ml-1">hrs/day</span>
+</div>
+</div>
+<input class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" max="24" min="4" type="range" value="12"/>
+<div class="flex justify-between mt-2 text-xs text-gray-500 font-mono">
+<span>4h</span>
+<span>14h</span>
+<span>24h</span>
+</div>
+</div>
+<div class="pt-6 border-t border-gray-200 dark:border-border-dark">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-gray-700 dark:text-gray-200">Include Maintenance Costs</span>
+<span class="text-xs text-gray-500 mt-1">Factor in battery watering &amp; replacement</span>
+</div>
+<button aria-checked="true" class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark bg-primary" role="switch">
+<span aria-hidden="true" class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+</button>
+</div>
+</div>
+</div>
+<div class="mt-8 p-4 rounded-lg bg-gradient-to-br from-surface-dark to-black border border-border-dark relative overflow-hidden group">
+<div class="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors"></div>
+<div class="relative z-10">
+<h4 class="text-sm font-semibold text-white mb-1">Need a custom audit?</h4>
+<p class="text-xs text-gray-400 mb-3">Our engineers can visit your facility for a precise evaluation.</p>
+<a class="text-xs text-primary hover:text-white font-medium flex items-center gap-1 transition-colors" href="#">
+                                Book Consultation <span class="material-icons text-[12px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-8 flex flex-col gap-6">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="glass-panel p-5 rounded-xl border-l-4 border-l-primary flex flex-col justify-between">
+<span class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">Total Annual Savings</span>
+<div class="flex items-baseline gap-1">
+<span class="text-3xl font-bold text-white tracking-tight font-mono">$142,500</span>
+</div>
+<div class="mt-2 flex items-center text-xs text-green-400 bg-green-400/10 px-2 py-1 rounded w-fit">
+<span class="material-icons text-[14px] mr-1">trending_up</span> +12% vs Lead Acid
+                        </div>
+</div>
+<div class="glass-panel p-5 rounded-xl border-l-4 border-l-accent-cyan flex flex-col justify-between">
+<span class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">ROI Break-even</span>
+<div class="flex items-baseline gap-1">
+<span class="text-3xl font-bold text-white tracking-tight font-mono">8.4</span>
+<span class="text-sm text-gray-400">months</span>
+</div>
+<div class="mt-2 flex items-center text-xs text-gray-400">
+                            Based on current usage
+                        </div>
+</div>
+<div class="glass-panel p-5 rounded-xl border-l-4 border-l-gray-600 flex flex-col justify-between">
+<span class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">CO2 Reduction</span>
+<div class="flex items-baseline gap-1">
+<span class="text-3xl font-bold text-white tracking-tight font-mono">24.5</span>
+<span class="text-sm text-gray-400">tons/yr</span>
+</div>
+<div class="mt-2 flex items-center text-xs text-gray-400">
+                            Equivalent to 1200 trees
+                        </div>
+</div>
+</div>
+<div class="glass-panel rounded-xl p-6 flex-grow flex flex-col relative min-h-[400px]">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-lg font-semibold text-white">Projected Cumulative Savings</h3>
+<div class="flex items-center gap-4 text-xs">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-accent-cyan shadow-glow-cyan"></div>
+<span class="text-gray-300">Tría Lithium</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-gray-600"></div>
+<span class="text-gray-500">Traditional Lead Acid</span>
+</div>
+</div>
+</div>
+<div class="relative w-full h-full flex-grow border-l border-b border-border-dark">
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
+<div class="w-full h-px bg-border-dark/50"></div>
+<div class="w-full h-px bg-border-dark/30"></div>
+<div class="w-full h-px bg-border-dark/30"></div>
+<div class="w-full h-px bg-border-dark/30"></div>
+<div class="w-full h-px bg-border-dark/50"></div>
+</div>
+<svg class="absolute inset-0 w-full h-full p-4 overflow-visible" preserveAspectRatio="none" viewBox="0 0 100 100">
+<defs>
+<linearGradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#00A499" stop-opacity="0.3"></stop>
+<stop offset="100%" stop-color="#00A499" stop-opacity="0"></stop>
+</linearGradient>
+</defs>
+<path d="M0,90 Q25,85 50,80 T100,70" fill="none" stroke="#4b5563" stroke-dasharray="2,2" stroke-width="0.5"></path>
+<path d="M0,90 C20,80 40,60 100,10" fill="url(#chartGradient)" stroke="none"></path>
+<path class="chart-line" d="M0,90 C20,80 40,60 100,10" fill="none" filter="drop-shadow(0 0 4px #00A499)" stroke="#00A499" stroke-linecap="round" stroke-width="1"></path>
+<circle cx="0" cy="90" fill="#0B0C0E" r="1.5" stroke="#00A499" stroke-width="0.5"></circle>
+<circle class="cursor-pointer hover:r-2 transition-all" cx="50" cy="45" fill="#0B0C0E" r="1.5" stroke="#00A499" stroke-width="0.5"></circle>
+<circle cx="100" cy="10" fill="#0B0C0E" r="1.5" stroke="#00A499" stroke-width="0.5"></circle>
+<g transform="translate(50, 25)">
+<rect fill="#141518" height="18" rx="4" stroke="#333" stroke-width="0.5" width="50" x="-25" y="-12"></rect>
+<text fill="#fff" font-family="Inter" font-size="6" font-weight="bold" text-anchor="middle" x="0" y="0">Year 2</text>
+</g>
+</svg>
+</div>
+<div class="flex justify-between mt-2 text-xs text-gray-500 font-mono uppercase tracking-wide">
+<span>Start</span>
+<span>Year 1</span>
+<span>Year 2</span>
+<span>Year 3</span>
+<span>Year 4</span>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-xl border border-border-dark bg-surface-dark/50">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-primary/10 rounded-lg text-primary">
+<span class="material-icons">description</span>
+</div>
+<div>
+<h4 class="text-sm font-medium text-white">Detailed Analysis Report</h4>
+<p class="text-xs text-gray-500">Includes breakdown by energy, maintenance, and replacement costs.</p>
+</div>
+</div>
+<button class="w-full sm:w-auto px-6 py-3 bg-primary hover:bg-primary-dark text-white font-medium rounded-lg shadow-glow transition-all flex items-center justify-center gap-2 group">
+<span>Download Full Report</span>
+<span class="material-icons text-sm group-hover:translate-x-1 transition-transform">arrow_downward</span>
+</button>
+</div>
+</div>
+</div>
+<div class="mt-16 pt-8 border-t border-gray-200 dark:border-border-dark grid grid-cols-2 md:grid-cols-4 gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+<img alt="Partner Logo" class="h-8 object-contain mx-auto" data-alt="Logistics Corp Logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAxhl4275T2IeXcWp84aUgCr200zJyo22MoSYkPzs9NSFeeCUKp18u0P-YJ1OyJLBFWIaTAZoG1FjCchumBlMUFTiByDGQJzZZtQqkXepTM8_Ic-q6L-WtVhFBWhrO5BZmKAZtb7wF0yzp9_oonwDAde8s_008pNw5UtZP8mBrLNGuhtrwOyUv7Fy5m9FyWYMYjxxttArdHFiip2YSP2bGL7XtiU93WNJ9fiFw5cm5CHBd7EF1zl9yeKWyLPslwBUqam-dAb27ZVQ"/>
+<img alt="Partner Logo" class="h-8 object-contain mx-auto" data-alt="Industry One Logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQP1CEGRUFB3v9WQ6WKXgcrMOXtjmqFy3j9AWv0HWMp-B8064OtQMjFtG6kqrLqhzPCDxPG4jbNJHppOEJcFLxTaQuby0N89NV52CQG3o6P1KkwwYLVQoJeKxL_WuqZePbt9I25PaKoJPaKtPoDNQpdV2WBNGyOOK7SagGQbC25ds51WMJarFnetwC3b5Q91ua6phEd5-PPEr7s-efxzPni-GGgHirdP9Lq1JUgBgJzRdKUIY7PWY76UpFWj50KEFfJ_iFoylsIMs"/>
+<img alt="Partner Logo" class="h-8 object-contain mx-auto" data-alt="Tech Fleet Logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJhIDepkgSwohRNMi6PGntzYTexn0Wh3fUkw1FnDRDrrt4nwWH7ycDRKky1FYxPRe1kjSqvWAlFAX8Q75B8nT9YS0aDjq97qQTx3l4rdgzBjqFQw1usZ6iHaSnriJHPWUudQKjSYPmUzky9k7bSM0lgYNbZmEB4FWZja6BqoFvbcA-PojwAOyPp4HYbf7YVsrgqFfVEmlSIlBI-0EFDUfgQ5S8XR5fDgVotZL262p8eZWiXzcZVxiyewEwlmZgyjBP7EPaYHnb-AI"/>
+<img alt="Partner Logo" class="h-8 object-contain mx-auto" data-alt="Global Move Logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5nVmeDR0M_LDimUJYSaxniq9dWk1zMmzkI_PeJFd1A6HYa44TmrLvYqShcbeC0WKTWDNkf9da1ig1QRB9y8gsNekbO314yIAkk6d_o1sIeNK-oNPpOHMVrWxVDCo42upeQA827FQVUJZiDiunSX8vQcRGa53aZeGHwI9HjPAfdn6p_yxLAgxrQNee3qenR88nLs4g7SaurUhTO9uFwDr_hWRogP9nPbYT4U-NQArAjhVjwWb5Cb17faPWup_Unsu-hijRh4cG170"/>
+</div>
+<footer class="mt-8 text-center text-xs text-gray-500 dark:text-gray-600">
+<p>© 2023 Supravel Tría Inc. All calculations are estimates based on standard industry averages.</p>
+</footer>
+</div>
+</main>
+
+</body></html>

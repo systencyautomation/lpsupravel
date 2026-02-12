@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html class="dark" lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Supravel Tría - A Revolução da Intralogística</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ea2a33",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#080808",
+                        "surface-dark": "#121212",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #2a2a2a 1px, transparent 1px), linear-gradient(to bottom, #2a2a2a 1px, transparent 1px)",
+                    }
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        .glass-nav {
+            @apply bg-[rgba(8,8,8,0.6)] backdrop-blur-xl border-b border-white/10;
+        }
+        .hero-glow {
+            background: radial-gradient(circle at center, rgba(6, 182, 212, 0.15) 0%, rgba(34, 197, 94, 0.05) 40%, transparent 70%);
+            filter: blur(60px);
+            z-index: 0;
+        }
+        .text-gradient {
+            background: linear-gradient(to bottom right, #ffffff 0%, #a0a0a0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .grid-bg {
+            background-size: 40px 40px;
+            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+        }
+        .hotspot-group:hover .hotspot-card {
+            @apply opacity-100 translate-y-0 scale-100 pointer-events-auto;
+        }
+        .hotspot-pulse {
+            @apply absolute inset-0 rounded-full bg-primary/40 animate-ping;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-gray-100 antialiased selection:bg-primary selection:text-white overflow-x-hidden">
+    <div class="fixed inset-0 z-0 pointer-events-none opacity-[0.15] grid-bg bg-grid-pattern"></div>
+    <nav class="fixed top-0 w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer group">
+                    <div
+                        class="w-8 h-8 bg-gradient-to-br from-primary to-red-700 rounded-lg flex items-center justify-center text-white font-bold shadow-lg shadow-primary/20 group-hover:shadow-primary/40 transition-all">
+                        S
+                    </div>
+                    <span class="text-xl font-bold tracking-tight text-white">Supravel<span
+                            class="text-gray-500 font-light mx-1">/</span>Tría</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a class="text-sm font-medium text-gray-300 hover:text-white transition-colors duration-200"
+                        href="#">Modelos</a>
+                    <a class="text-sm font-medium text-gray-300 hover:text-white transition-colors duration-200"
+                        href="#">Tecnologia Lítio</a>
+                    <a class="text-sm font-medium text-gray-300 hover:text-white transition-colors duration-200"
+                        href="#">Serviços</a>
+                    <a class="text-sm font-medium text-gray-300 hover:text-white transition-colors duration-200"
+                        href="#">Sobre nós</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <a class="text-sm font-medium text-gray-400 hover:text-white transition-colors" href="#">Login</a>
+                    <a class="px-5 py-2.5 text-sm font-medium rounded-full bg-white/5 hover:bg-white/10 text-white border border-white/10 transition-all backdrop-blur-sm"
+                        href="#">
+                        Fale com Consultor
+                    </a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="text-gray-300 hover:text-white focus:outline-none">
+                        <span class="material-icons-round text-2xl">menu</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="relative pt-32 pb-16 lg:pt-48 lg:pb-32 overflow-hidden z-10">
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] hero-glow pointer-events-none">
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-4xl mx-auto mb-16">
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold uppercase tracking-wider mb-8">
+                    <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                    Nova Série Lítio 2024
+                </div>
+                <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-[1.1]">
+                    <span class="text-gradient block">A Revolução da</span>
+                    <span class="text-white relative inline-block">
+                        Intralogística
+                        <svg class="absolute w-full h-3 -bottom-1 left-0 text-primary opacity-80" fill="none"
+                            viewBox="0 0 200 9" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M2.00025 6.99997C25.7265 0.386001 81.6543 -2.25997 127.323 2.08331C152.091 4.43936 177.306 6.58667 197.989 6.99998"
+                                stroke="currentColor" stroke-linecap="round" stroke-width="3"></path>
+                        </svg>
+                    </span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed mb-10 font-light">
+                    Potência do Lítio. Precisão da Tría. Experimente a nova era de empilhadeiras de alta performance
+                    projetadas para o futuro da indústria.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <button
+                        class="group relative px-8 py-4 bg-primary hover:bg-red-600 text-white text-base font-semibold rounded-lg shadow-lg shadow-primary/25 transition-all duration-300 transform hover:-translate-y-1 overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700">
+                        </div>
+                        <span class="relative flex items-center gap-2">
+                            Configurar Agora
+                            <span class="material-icons-round text-sm">arrow_forward</span>
+                        </span>
+                    </button>
+                    <button
+                        class="px-8 py-4 bg-transparent text-gray-300 hover:text-white text-base font-medium rounded-lg border border-white/10 hover:border-white/30 hover:bg-white/5 transition-all duration-300 flex items-center gap-2">
+                        <span class="material-icons-round text-lg text-primary">play_circle_outline</span>
+                        Ver o vídeo
+                    </button>
+                </div>
+            </div>
+            <div class="relative mt-8 group">
+                <div
+                    class="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-[#0a0a0a] aspect-[21/9] md:aspect-auto">
+                    <img alt="Dramatic futuristic yellow and black industrial forklift"
+                        class="w-full h-auto object-cover max-h-[700px] opacity-80"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCo_O3Y6Fejnc9SlwZt0BdBgr2A674ZRL6AS-Q6MuZamAClQlIoJm7mhJjkNjtwqcgx0IDIoB1NhmrIO5qMTC8f_MkHc3Pidh5IGQXlXONaqB_iHpBQLhj1toNYdVAPzKExgPUCSQ27u4Xh_7MAZDuwKzdeI3UWhz1As8oZcC-2zsJzSfpa9ban6Cg3aHaU-iGfuswFfJPogD5n3lG84j9Ckkiekb27-ZgJ4QW6fdtROM4dWeFxq2GAgLMKi6yO6yFisI89l2xOlrY" />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent opacity-60">
+                    </div>
+                    <div class="absolute inset-0 z-20">
+                        <div class="absolute top-[45%] left-[22%] hotspot-group group/h1">
+                            <div class="relative w-8 h-8 cursor-pointer">
+                                <div class="hotspot-pulse"></div>
+                                <div
+                                    class="relative w-full h-full bg-primary rounded-full flex items-center justify-center shadow-lg border-2 border-white/20">
+                                    <span class="material-icons-round text-white text-lg">bolt</span>
+                                </div>
+                            </div>
+                            <div
+                                class="hotspot-card absolute bottom-12 left-1/2 -translate-x-1/2 w-64 p-4 glass-nav rounded-2xl border border-white/10 opacity-0 -translate-y-4 scale-95 transition-all duration-300 pointer-events-none z-30 shadow-2xl">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="p-2 bg-primary/20 rounded-lg text-primary">
+                                        <span class="material-icons-round text-xl">battery_charging_full</span>
+                                    </div>
+                                    <span class="text-sm font-bold text-white">Carregamento Rápido</span>
+                                </div>
+                                <p class="text-xs text-gray-400 mb-3 leading-relaxed">Carregamento total em apenas 2
+                                    horas com tecnologia Lítio de última geração.</p>
+                                <div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
+                                    <div class="bg-primary h-full w-[90%]"></div>
+                                </div>
+                                <div class="mt-2 text-[10px] text-gray-500 font-medium uppercase tracking-wider">
+                                    Eficiência Energética 95%</div>
+                            </div>
+                        </div>
+                        <div class="absolute top-[35%] left-[45%] hotspot-group group/h2">
+                            <div class="relative w-8 h-8 cursor-pointer">
+                                <div class="hotspot-pulse bg-cyan-400/40"></div>
+                                <div
+                                    class="relative w-full h-full bg-cyan-500 rounded-full flex items-center justify-center shadow-lg border-2 border-white/20">
+                                    <span class="material-icons-round text-white text-lg">settings_remote</span>
+                                </div>
+                            </div>
+                            <div
+                                class="hotspot-card absolute bottom-12 left-1/2 -translate-x-1/2 w-64 p-4 glass-nav rounded-2xl border border-white/10 opacity-0 -translate-y-4 scale-95 transition-all duration-300 pointer-events-none z-30 shadow-2xl">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="p-2 bg-cyan-500/20 rounded-lg text-cyan-400">
+                                        <span class="material-icons-round text-xl">precision_manufacturing</span>
+                                    </div>
+                                    <span class="text-sm font-bold text-white">Telemetria Integrada</span>
+                                </div>
+                                <p class="text-xs text-gray-400 leading-relaxed">Gestão de frota em tempo real com GPS e
+                                    monitoramento de saúde do motor via IoT.</p>
+                                <div class="mt-3 flex gap-1">
+                                    <div class="h-1 flex-1 bg-cyan-500/40 rounded-full"></div>
+                                    <div class="h-1 flex-1 bg-cyan-500 rounded-full"></div>
+                                    <div class="h-1 flex-1 bg-cyan-500/40 rounded-full"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute top-[25%] right-[28%] hotspot-group group/h3">
+                            <div class="relative w-8 h-8 cursor-pointer">
+                                <div class="hotspot-pulse bg-teal-400/40"></div>
+                                <div
+                                    class="relative w-full h-full bg-teal-500 rounded-full flex items-center justify-center shadow-lg border-2 border-white/20">
+                                    <span class="material-icons-round text-white text-lg">expand</span>
+                                </div>
+                            </div>
+                            <div
+                                class="hotspot-card absolute bottom-12 left-1/2 -translate-x-1/2 w-64 p-4 glass-nav rounded-2xl border border-white/10 opacity-0 -translate-y-4 scale-95 transition-all duration-300 pointer-events-none z-30 shadow-2xl">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="p-2 bg-teal-500/20 rounded-lg text-teal-400">
+                                        <span class="material-icons-round text-xl">monitor_weight</span>
+                                    </div>
+                                    <span class="text-sm font-bold text-white">Carga e Estabilidade</span>
+                                </div>
+                                <div class="text-2xl font-bold text-white mb-1">3.5 Ton <span
+                                        class="text-[10px] text-gray-400 font-normal">Capacidade Máxima</span></div>
+                                <p class="text-xs text-gray-400 leading-relaxed">Mastro triplex de alta visibilidade com
+                                    sistema de amortecimento hidráulico.</p>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-[20%] left-[35%] hotspot-group group/h4">
+                            <div class="relative w-8 h-8 cursor-pointer">
+                                <div class="hotspot-pulse bg-white/20"></div>
+                                <div
+                                    class="relative w-full h-full bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center shadow-lg border-2 border-white/40">
+                                    <span class="material-icons-round text-white text-lg">verified_user</span>
+                                </div>
+                            </div>
+                            <div
+                                class="hotspot-card absolute bottom-12 left-1/2 -translate-x-1/2 w-64 p-4 glass-nav rounded-2xl border border-white/10 opacity-0 -translate-y-4 scale-95 transition-all duration-300 pointer-events-none z-30 shadow-2xl">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="p-2 bg-white/10 rounded-lg text-white">
+                                        <span class="material-icons-round text-xl">shield</span>
+                                    </div>
+                                    <span class="text-sm font-bold text-white">Segurança Ativa</span>
+                                </div>
+                                <p class="text-xs text-gray-400 leading-relaxed">Sensores de proximidade e redução
+                                    automática de velocidade em curvas.</p>
+                                <div
+                                    class="mt-3 py-1 px-2 bg-white/5 border border-white/10 rounded text-[10px] text-white/60 text-center uppercase">
+                                    Certificação IP65</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="mt-20 pt-10 border-t border-white/5 grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center opacity-60 hover:opacity-100 transition-opacity duration-500">
+                <div class="flex flex-col items-center gap-2 group cursor-default">
+                    <span
+                        class="material-icons-round text-3xl text-gray-500 group-hover:text-primary transition-colors">battery_charging_full</span>
+                    <span class="text-xs font-medium text-gray-400 uppercase tracking-widest">Tecnologia Lítio
+                        Ion</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 group cursor-default">
+                    <span
+                        class="material-icons-round text-3xl text-gray-500 group-hover:text-cyan-400 transition-colors">settings_remote</span>
+                    <span class="text-xs font-medium text-gray-400 uppercase tracking-widest">Telemetria IoT</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 group cursor-default">
+                    <span
+                        class="material-icons-round text-3xl text-gray-500 group-hover:text-primary transition-colors">verified_user</span>
+                    <span class="text-xs font-medium text-gray-400 uppercase tracking-widest">5 Anos Garantia</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 group cursor-default">
+                    <span
+                        class="material-icons-round text-3xl text-gray-500 group-hover:text-teal-400 transition-colors">eco</span>
+                    <span class="text-xs font-medium text-gray-400 uppercase tracking-widest">Zero Emissão</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>

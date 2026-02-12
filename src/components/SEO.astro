@@ -1,0 +1,94 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  url?: string;
+}
+
+const { 
+  title = "Líder em Empilhadeiras Elétricas e Lítio no Rio Grande do Sul | Supravel",
+  description = "Economize até 84% com empilhadeiras elétricas a lítio. Locação, venda e manutenção em Caxias do Sul e Porto Alegre. Tecnologia Supravel Tría 2026.",
+  image = "/herov2.png",
+  url = "https://supravel.com.br"
+} = Astro.props;
+
+const schemaServiceArea = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Locação e Manutenção de Empilhadeiras",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Supravel",
+    "areaServed": [
+      {
+        "@type": "State",
+        "name": "Rio Grande do Sul"
+      },
+      {
+        "@type": "City",
+        "name": "Caxias do Sul"
+      },
+      {
+        "@type": "City",
+        "name": "Porto Alegre"
+      }
+    ]
+  }
+});
+
+const schemaFAQ = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Por que a transição para o Lítio elimina o adicional de periculosidade da NR-16?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A NR-16 estabelece adicional de 30% de periculosidade para operações com inflamáveis líquidos ou gasosos liquefeitos. Ao substituir empilhadeiras a combustão (GLP/Diesel) por elétricas a lítio, elimina-se o manuseio e armazenamento de cilindros de gás, isentando a operação dessa taxa e reduzindo passivos trabalhistas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Qual a economia real ao trocar GLP por Lítio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Estudos comprovam uma economia de até 84% nos custos operacionais. Enquanto o custo de abastecimento mensal de uma empilhadeira GLP pode chegar a R$ 4.500,00 (R$ 285 mil em 5 anos), a recarga elétrica custa cerca de R$ 1.100,00 (R$ 15 mil no mesmo período), além da redução drástica em manutenção."
+      }
+    }
+  ]
+});
+---
+
+<!-- Global Metadata -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="robots" content="index, follow" />
+<meta name="keywords" content="empilhadeira elétrica, bateria de lítio, locação empilhadeira RS, manutenção empilhadeira Caxias do Sul, Supravel, intralogística, videotelemetria, recarga de oportunidade" />
+
+<!-- Open Graph / Facebook / WhatsApp -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={url} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={image} />
+<meta property="og:locale" content="pt_BR" />
+<meta property="og:site_name" content="Supravel Equipamentos" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={url} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={image} />
+
+<!-- JSON-LD Schemas -->
+<script type="application/ld+json" set:html={schemaServiceArea} />
+<script type="application/ld+json" set:html={schemaFAQ} />
