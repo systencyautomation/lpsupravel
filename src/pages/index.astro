@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import '@fontsource-variable/inter';
 import Navbar from '../components/Navbar.astro';
 import Hero from '../components/Hero.astro';
 import Hero2 from '../components/Hero2.astro';
@@ -15,14 +16,6 @@ import SEO from '../components/SEO.astro';
 		<link rel="icon" type="image/png" href="/favicon.png" />
 		<meta name="generator" content={Astro.generator} />
         
-        {/* Preconnect to font origins */}
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        
-        {/* Font stylesheets - display=swap ensures text is visible immediately */}
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-        
         {/* Preload hero image for faster LCP */}
         <link rel="preload" as="image" href="/hero-forklift.png" type="image/png">
 	</head>
@@ -33,5 +26,13 @@ import SEO from '../components/SEO.astro';
         <Performance />
         <Calculator />
         <Support />
+        
+        {/* Material Icons loaded non-blocking at end of body */}
+        <script is:inline>
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'https://fonts.googleapis.com/icon?family=Material+Icons+Round';
+            document.head.appendChild(link);
+        </script>
 	</body>
 </html>

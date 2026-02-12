@@ -5,7 +5,7 @@
     --color-background-light: #f8f6f6;
     --color-background-dark: #080808;
     --color-surface-dark: #121212;
-    --font-display: "Inter", sans-serif;
+    --font-display: "Inter Variable", "Inter", sans-serif;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -47,6 +47,7 @@
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
