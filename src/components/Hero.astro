@@ -46,12 +46,27 @@ import heroImage from '../assets/hero-tria.webp';
 
   <!-- Static Image & Hotspots - Critical for LCP -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mt-10 mb-20">
-    <div class="relative group">
-        <div class="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-[#0a0a0a] h-[400px] md:h-[600px] flex items-center justify-center">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-[30px] items-center w-full">
+        <!-- Esquerda (Cards 33%) -->
+        <div class="hidden lg:flex flex-col gap-6 mt-6 lg:col-span-4">
+            <div class="p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors backdrop-blur-sm group/card1 text-left">
+                <h3 class="text-white font-bold mb-2 group-hover/card1:text-primary transition-colors">Alta Performance</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Potência máxima para sua operação.</p>
+            </div>
+            <div class="p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors backdrop-blur-sm group/card2 text-left">
+                <h3 class="text-white font-bold mb-2 group-hover/card2:text-primary transition-colors">Economia Real</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Reduza custos operacionais drasticamente com nossa tecnologia de gestão energética.</p>
+            </div>
+        </div>
+
+        <!-- Centro (Imagem 66% com alinhamento esquerdo) -->
+        <div class="lg:col-span-8 relative group w-full px-0">
+            <div class="relative group w-full">
+        <div class="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-[#0a0a0a] flex items-center justify-center">
             <Image
                 src={heroImage}
                 alt="Empilhadeiras elétricas a lítio Supravel - Líder no Rio Grande do Sul"
-                class="w-full h-full object-contain p-2 !h-full !object-contain"
+                class="w-full h-full object-contain !h-full !object-contain"
                 sizes="(max-width: 640px) 400px, (max-width: 1024px) 800px, 1200px"
                 loading="eager"
                 fetchpriority="high"
@@ -61,69 +76,133 @@ import heroImage from '../assets/hero-tria.webp';
 
             <!-- Hotspots Container -->
             <div class="absolute inset-0 z-20">
+                <!-- Hotspot 3 (Altura) -->
+                <div class="absolute top-[35%] left-[37%] hotspot-group group/h3">
+                    <div class="relative w-8 h-8 cursor-pointer">
+                        <div class="absolute inset-0 rounded-full bg-amber-400/40 animate-ping"></div>
+                        <div class="relative w-full h-full bg-amber-500 rounded-full flex items-center justify-center shadow-lg border-2 border-white/20">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white">
+                                <path d="M12 20V4" />
+                                <path d="m5 11 7-7 7 7" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="hotspot-card absolute bottom-12 left-1/2 -translate-x-1/2 w-64 p-3 rounded-2xl border border-white/10 opacity-0 -translate-y-4 scale-95 transition-all duration-300 pointer-events-none z-30 shadow-2xl group-hover/h3:opacity-100 group-hover/h3:translate-y-0 group-hover/h3:scale-100 group-hover/h3:pointer-events-auto bg-black/80 backdrop-blur-md">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="p-1.5 bg-amber-500/20 rounded-lg text-amber-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                                    <path d="M12 20V4" />
+                                    <path d="m5 11 7-7 7 7" />
+                                </svg>
+                            </div>
+                            <span class="text-xs font-bold text-white">Alcance Vertical</span>
+                        </div>
+                        <p class="text-lg font-bold text-white mb-0.5">Altura de Elevação</p>
+                        <p class="text-xl font-bold text-amber-500 mb-2">4,8 a 6 m</p>
+                        <div class="w-full bg-white/10 h-1 rounded-full overflow-hidden">
+                            <div class="bg-amber-500 h-full w-[80%]"></div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Hotspot 1 -->
-                <div class="absolute top-[45%] left-[22%] hotspot-group group/h1">
+                <div class="absolute top-[70%] left-[22%] hotspot-group group/h1">
                     <div class="relative w-8 h-8 cursor-pointer">
                         <div class="absolute inset-0 rounded-full bg-primary/40 animate-ping"></div>
                         <div class="relative w-full h-full bg-primary rounded-full flex items-center justify-center shadow-lg border-2 border-white/20">
-                            <span class="material-icons-round text-white text-lg">bolt</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white">
+                                <path d="M12 6m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                                <path d="M6.835 9h10.33a1 1 0 0 1 .984 .821l1.637 9a1 1 0 0 1 -.984 1.179h-13.604a1 1 0 0 1 -.984 -1.179l1.637 -9a1 1 0 0 1 .984 -.821z" />
+                            </svg>
                         </div>
                     </div>
-                    <div class="hotspot-card absolute bottom-12 left-1/2 -translate-x-1/2 w-64 p-4 rounded-2xl border border-white/10 opacity-0 -translate-y-4 scale-95 transition-all duration-300 pointer-events-none z-30 shadow-2xl group-hover/h1:opacity-100 group-hover/h1:translate-y-0 group-hover/h1:scale-100 group-hover/h1:pointer-events-auto bg-black/80 backdrop-blur-md">
-                        <div class="flex items-center gap-3 mb-3">
-                            <div class="p-2 bg-primary/20 rounded-lg text-primary">
-                                <span class="material-icons-round text-xl">battery_charging_full</span>
+                    <div class="hotspot-card absolute bottom-12 left-1/2 -translate-x-1/2 w-64 p-3 rounded-2xl border border-white/10 opacity-0 -translate-y-4 scale-95 transition-all duration-300 pointer-events-none z-30 shadow-2xl group-hover/h1:opacity-100 group-hover/h1:translate-y-0 group-hover/h1:scale-100 group-hover/h1:pointer-events-auto bg-black/80 backdrop-blur-md">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="p-1.5 bg-primary/20 rounded-lg text-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                                    <path d="M12 6m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                                    <path d="M6.835 9h10.33a1 1 0 0 1 .984 .821l1.637 9a1 1 0 0 1 -.984 1.179h-13.604a1 1 0 0 1 -.984 -1.179l1.637 -9a1 1 0 0 1 .984 -.821z" />
+                                </svg>
                             </div>
-                            <span class="text-sm font-bold text-white">Carregamento Rápido</span>
+                            <span class="text-xs font-bold text-white">Capacidade de Carga</span>
                         </div>
-                        <p class="text-xs text-gray-400 mb-3 leading-relaxed">Carregamento total em apenas 2 horas com tecnologia Lítio de última geração.</p>
-                        <div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
-                            <div class="bg-primary h-full w-[90%]"></div>
+                        <p class="text-lg font-bold text-white mb-0.5">EFX 302</p>
+                        <p class="text-xl font-bold text-primary mb-2">3,0 TON</p>
+                        <div class="w-full bg-white/10 h-1 rounded-full overflow-hidden">
+                            <div class="bg-primary h-full w-[100%]"></div>
                         </div>
-                        <div class="mt-2 text-[10px] text-gray-500 font-medium uppercase tracking-wider">Eficiência Energética 95%</div>
+                        <div class="mt-2 text-[10px] text-gray-500 font-medium uppercase tracking-wider">Alta Performance</div>
                     </div>
                 </div>
 
                 <!-- Hotspot 2 -->
-                <div class="absolute top-[35%] left-[45%] hotspot-group group/h2">
+                <div class="absolute top-[60%] left-[65%] hotspot-group group/h2">
                     <div class="relative w-8 h-8 cursor-pointer">
-                        <div class="absolute inset-0 rounded-full bg-cyan-400/40 animate-ping"></div>
-                        <div class="relative w-full h-full bg-cyan-500 rounded-full flex items-center justify-center shadow-lg border-2 border-white/20">
-                            <span class="material-icons-round text-white text-lg">settings_remote</span>
+                        <div class="absolute inset-0 rounded-full bg-green-400/40 animate-ping"></div>
+                        <div class="relative w-full h-full bg-green-500 rounded-full flex items-center justify-center shadow-lg border-2 border-white/20">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white">
+                                <path d="M15 7h1a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2"/>
+                                <path d="M6 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h1"/>
+                                <path d="m11 7-3 5h4l-3 5"/>
+                                <line x1="22" x2="22" y1="11" y2="13"/>
+                            </svg>
                         </div>
                     </div>
-                    <div class="hotspot-card absolute bottom-12 left-1/2 -translate-x-1/2 w-64 p-4 rounded-2xl border border-white/10 opacity-0 -translate-y-4 scale-95 transition-all duration-300 pointer-events-none z-30 shadow-2xl group-hover/h2:opacity-100 group-hover/h2:translate-y-0 group-hover/h2:scale-100 group-hover/h2:pointer-events-auto bg-black/80 backdrop-blur-md">
-                        <div class="flex items-center gap-3 mb-3">
-                            <div class="p-2 bg-cyan-500/20 rounded-lg text-cyan-400">
-                                <span class="material-icons-round text-xl">precision_manufacturing</span>
+                    <div class="hotspot-card absolute bottom-12 left-1/2 -translate-x-1/2 w-64 p-3 rounded-2xl border border-white/10 opacity-0 -translate-y-4 scale-95 transition-all duration-300 pointer-events-none z-30 shadow-2xl group-hover/h2:opacity-100 group-hover/h2:translate-y-0 group-hover/h2:scale-100 group-hover/h2:pointer-events-auto bg-black/80 backdrop-blur-md">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="p-1.5 bg-green-500/20 rounded-lg text-green-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white">
+                                    <path d="M15 7h1a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2"/>
+                                    <path d="M6 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h1"/>
+                                    <path d="m11 7-3 5h4l-3 5"/>
+                                    <line x1="22" x2="22" y1="11" y2="13"/>
+                                </svg>
                             </div>
-                            <span class="text-sm font-bold text-white">Telemetria Integrada</span>
+                            <span class="text-xs font-bold text-white">Bateria Removível 80V</span>
                         </div>
-                        <p class="text-xs text-gray-400 leading-relaxed">Gestão de frota em tempo real com GPS e monitoramento de saúde do motor via IoT.</p>
+                        <p class="text-xs text-gray-400 leading-relaxed mb-1">
+                            Equipado com bateria de íons de lítio 80V/150Ah como padrão.
+                        </p>
+                        <p class="text-xs text-gray-500 leading-relaxed">
+                            Zero manutenção e fácil extração lateral para operação contínua.
+                        </p>
+                    </div>
+                <!-- Hotspot 4 (Pneus) --> 
+                <div class="absolute top-[90%] left-[6%] hotspot-group group/h4">
+                    <div class="relative w-8 h-8 cursor-pointer">
+                        <div class="absolute inset-0 rounded-full bg-gray-400/40 animate-ping"></div>
+                        <div class="relative w-full h-full bg-gray-500 rounded-full flex items-center justify-center shadow-lg border-2 border-white/20">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white">
+                                <circle cx="12" cy="12" r="10"/>
+                                <circle cx="12" cy="12" r="4"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="hotspot-card absolute bottom-12 left-1/2 -translate-x-1/2 w-64 p-3 rounded-2xl border border-white/10 opacity-0 -translate-y-4 scale-95 transition-all duration-300 pointer-events-none z-30 shadow-2xl group-hover/h4:opacity-100 group-hover/h4:translate-y-0 group-hover/h4:scale-100 group-hover/h4:pointer-events-auto bg-black/80 backdrop-blur-md">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="p-1.5 bg-gray-500/20 rounded-lg text-gray-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <circle cx="12" cy="12" r="4"/>
+                                    <path d="M12 2a10 10 0 0 1 10 10"/>
+                                </svg>
+                            </div>
+                            <span class="text-xs font-bold text-white">Versatilidade</span>
+                        </div>
+                        <p class="text-[10px] uppercase font-bold text-gray-500 tracking-wider mb-0.5">Tipo de Rodado</p>
+                        <p class="text-lg font-bold text-white mb-2 leading-tight">Pneu Maciço ou Pneumático</p>
+                        <div class="w-full bg-white/10 h-1 rounded-full overflow-hidden">
+                            <div class="bg-gray-500 h-full w-[100%]"></div>
+                        </div>
+                        <div class="mt-2 text-[10px] text-gray-400 font-medium">Adaptável ao seu terreno</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Stats Section -->
-    <div class="mt-20 pt-10 border-t border-white/5 grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center opacity-80 hover:opacity-100 transition-opacity duration-500">
-        <div class="flex flex-col items-center gap-2 group cursor-default">
-            <span class="material-icons-round text-3xl text-gray-500 group-hover:text-primary transition-colors">battery_charging_full</span>
-            <span class="text-xs font-medium text-gray-400 uppercase tracking-widest">Tecnologia Lítio Ion</span>
-        </div>
-        <div class="flex flex-col items-center gap-2 group cursor-default">
-            <span class="material-icons-round text-3xl text-gray-500 group-hover:text-cyan-400 transition-colors">settings_remote</span>
-            <span class="text-xs font-medium text-gray-400 uppercase tracking-widest">Telemetria IoT</span>
-        </div>
-        <div class="flex flex-col items-center gap-2 group cursor-default">
-            <span class="material-icons-round text-3xl text-gray-500 group-hover:text-primary transition-colors">verified_user</span>
-            <span class="text-xs font-medium text-gray-400 uppercase tracking-widest">5 Anos Garantia</span>
-        </div>
-        <div class="flex flex-col items-center gap-2 group cursor-default">
-            <span class="material-icons-round text-3xl text-gray-500 group-hover:text-teal-400 transition-colors">eco</span>
-            <span class="text-xs font-medium text-gray-400 uppercase tracking-widest">Zero Emissão</span>
         </div>
     </div>
+
+
   </div>
 </section>
