@@ -1,0 +1,48 @@
+﻿npm.cmd : npm error 
+code 1
+No linha:1 
+caractere:1
++ & "C:\Program Files
+\nodejs\npm.cmd" 
+install > 
+install_log.txt 2>&1
++ ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (npm err   
+ or code 1:String    
+) [], RemoteExce    
+ption
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+npm error path C:\Use
+rs\taina\.gemini\anti
+gravity\scratch\lpsup
+ravel\node_modules\es
+build
+npm error command 
+failed
+npm error command C:\
+WINDOWS\system32\cmd.
+exe /d /s /c node 
+install.js
+npm error 'node' 
+n´┐¢o ´┐¢ 
+reconhecido como um 
+comando interno
+npm error ou 
+externo, um programa 
+oper´┐¢vel ou um 
+arquivo em lotes.
+npm error A complete 
+log of this run can 
+be found in: C:\Users
+\taina\AppData\Local\
+npm-cache\_logs\2026-
+02-12T14_30_44_303Z-d
+ebug-0.log

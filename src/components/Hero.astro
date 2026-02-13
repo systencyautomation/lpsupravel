@@ -1,10 +1,132 @@
 ---
-import HeroContent from './HeroContent.tsx';
+import { Image } from 'astro:assets';
+import heroImage from '../assets/hero-forklift.png';
 ---
 
 <section class="relative min-h-screen flex flex-col justify-center overflow-hidden">
-  <div class="fixed inset-0 z-0 pointer-events-none opacity-[0.15] bg-grid-pattern"></div>
+  <div class="absolute inset-0 z-0 pointer-events-none opacity-[0.15] bg-grid-pattern"></div>
   <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] hero-glow pointer-events-none"></div>
   
-  <HeroContent client:load />
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 font-display pt-32 md:pt-40 text-center">
+    <!-- Static Badge -->
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold uppercase tracking-wider mb-8">
+        <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+        Nova Série Lítio 2026
+    </div>
+
+    <!-- Static Heading (Critical for FCP) -->
+    <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-[1.1] max-w-4xl mx-auto">
+        <span class="text-gradient block">Empilhadeiras Elétricas a Lítio</span>
+        <span class="text-white relative inline-block text-3xl md:text-5xl mt-2">
+            Reduza Custos Operacionais em até 84%
+            <svg class="absolute w-full h-3 -bottom-1 left-0 text-primary opacity-80" fill="none" viewBox="0 0 200 9" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2.00025 6.99997C25.7265 0.386001 81.6543 -2.25997 127.323 2.08331C152.091 4.43936 177.306 6.58667 197.989 6.99998" stroke="currentColor" stroke-linecap="round" stroke-width="3"></path>
+            </svg>
+        </span>
+    </h1>
+
+    <!-- Static Paragraph -->
+    <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed mb-10 font-light">
+        Líder em tecnologia de Lítio no Rio Grande do Sul. Logística inteligência.
+    </p>
+
+    <!-- Static Buttons (No React needed) -->
+    <div class="hero-fade-in flex flex-col sm:flex-row items-center justify-center gap-4">
+        <button class="group relative px-8 py-4 bg-primary hover:bg-red-600 text-white text-base font-semibold rounded-lg shadow-lg shadow-primary/25 transition-all duration-300 transform hover:-translate-y-1 overflow-hidden cursor-pointer">
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+            <span class="relative flex items-center gap-2">
+                Solicitar Orçamento
+                <span class="material-icons-round text-sm">arrow_forward</span>
+            </span>
+        </button>
+        <button class="px-8 py-4 bg-transparent text-gray-300 hover:text-white text-base font-medium rounded-lg border border-white/10 hover:border-white/30 hover:bg-white/5 transition-all duration-300 flex items-center gap-2 cursor-pointer">
+            <span class="material-icons-round text-lg text-primary">whatsapp</span>
+            Falar com Especialista
+        </button>
+    </div>
+  </div>
+
+  <!-- Static Image & Hotspots - Critical for LCP -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mt-10 mb-20">
+    <div class="relative group">
+        <div class="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-[#0a0a0a] aspect-[21/9] md:aspect-auto">
+            <Image
+                src={heroImage}
+                alt="Empilhadeiras elétricas a lítio Supravel - Líder no Rio Grande do Sul"
+                class="w-full h-auto object-cover max-h-[700px] opacity-80"
+                widths={[400, 800, 1200]}
+                sizes="(max-width: 640px) 400px, (max-width: 1024px) 800px, 1200px"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent opacity-60"></div>
+
+            <!-- Hotspots Container -->
+            <div class="absolute inset-0 z-20">
+                <!-- Hotspot 1 -->
+                <div class="absolute top-[45%] left-[22%] hotspot-group group/h1">
+                    <div class="relative w-8 h-8 cursor-pointer">
+                        <div class="absolute inset-0 rounded-full bg-primary/40 animate-ping"></div>
+                        <div class="relative w-full h-full bg-primary rounded-full flex items-center justify-center shadow-lg border-2 border-white/20">
+                            <span class="material-icons-round text-white text-lg">bolt</span>
+                        </div>
+                    </div>
+                    <div class="hotspot-card absolute bottom-12 left-1/2 -translate-x-1/2 w-64 p-4 rounded-2xl border border-white/10 opacity-0 -translate-y-4 scale-95 transition-all duration-300 pointer-events-none z-30 shadow-2xl group-hover/h1:opacity-100 group-hover/h1:translate-y-0 group-hover/h1:scale-100 group-hover/h1:pointer-events-auto bg-black/80 backdrop-blur-md">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="p-2 bg-primary/20 rounded-lg text-primary">
+                                <span class="material-icons-round text-xl">battery_charging_full</span>
+                            </div>
+                            <span class="text-sm font-bold text-white">Carregamento Rápido</span>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-3 leading-relaxed">Carregamento total em apenas 2 horas com tecnologia Lítio de última geração.</p>
+                        <div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
+                            <div class="bg-primary h-full w-[90%]"></div>
+                        </div>
+                        <div class="mt-2 text-[10px] text-gray-500 font-medium uppercase tracking-wider">Eficiência Energética 95%</div>
+                    </div>
+                </div>
+
+                <!-- Hotspot 2 -->
+                <div class="absolute top-[35%] left-[45%] hotspot-group group/h2">
+                    <div class="relative w-8 h-8 cursor-pointer">
+                        <div class="absolute inset-0 rounded-full bg-cyan-400/40 animate-ping"></div>
+                        <div class="relative w-full h-full bg-cyan-500 rounded-full flex items-center justify-center shadow-lg border-2 border-white/20">
+                            <span class="material-icons-round text-white text-lg">settings_remote</span>
+                        </div>
+                    </div>
+                    <div class="hotspot-card absolute bottom-12 left-1/2 -translate-x-1/2 w-64 p-4 rounded-2xl border border-white/10 opacity-0 -translate-y-4 scale-95 transition-all duration-300 pointer-events-none z-30 shadow-2xl group-hover/h2:opacity-100 group-hover/h2:translate-y-0 group-hover/h2:scale-100 group-hover/h2:pointer-events-auto bg-black/80 backdrop-blur-md">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="p-2 bg-cyan-500/20 rounded-lg text-cyan-400">
+                                <span class="material-icons-round text-xl">precision_manufacturing</span>
+                            </div>
+                            <span class="text-sm font-bold text-white">Telemetria Integrada</span>
+                        </div>
+                        <p class="text-xs text-gray-400 leading-relaxed">Gestão de frota em tempo real com GPS e monitoramento de saúde do motor via IoT.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="mt-20 pt-10 border-t border-white/5 grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center opacity-80 hover:opacity-100 transition-opacity duration-500">
+        <div class="flex flex-col items-center gap-2 group cursor-default">
+            <span class="material-icons-round text-3xl text-gray-500 group-hover:text-primary transition-colors">battery_charging_full</span>
+            <span class="text-xs font-medium text-gray-400 uppercase tracking-widest">Tecnologia Lítio Ion</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 group cursor-default">
+            <span class="material-icons-round text-3xl text-gray-500 group-hover:text-cyan-400 transition-colors">settings_remote</span>
+            <span class="text-xs font-medium text-gray-400 uppercase tracking-widest">Telemetria IoT</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 group cursor-default">
+            <span class="material-icons-round text-3xl text-gray-500 group-hover:text-primary transition-colors">verified_user</span>
+            <span class="text-xs font-medium text-gray-400 uppercase tracking-widest">5 Anos Garantia</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 group cursor-default">
+            <span class="material-icons-round text-3xl text-gray-500 group-hover:text-teal-400 transition-colors">eco</span>
+            <span class="text-xs font-medium text-gray-400 uppercase tracking-widest">Zero Emissão</span>
+        </div>
+    </div>
+  </div>
 </section>
