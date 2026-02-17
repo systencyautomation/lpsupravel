@@ -47,20 +47,11 @@ import heroImage from '../assets/hero-tria.webp';
   <!-- Static Image & Hotspots - Critical for LCP -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mt-10 mb-20">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-[30px] items-center w-full">
-        <!-- Esquerda (Cards 33%) -->
-        <div class="hidden lg:flex flex-col gap-6 mt-6 lg:col-span-4">
-            <div class="p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors backdrop-blur-sm group/card1 text-left">
-                <h3 class="text-white font-bold mb-2 group-hover/card1:text-primary transition-colors">Alta Performance</h3>
-                <p class="text-sm text-gray-400 leading-relaxed">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Potência máxima para sua operação.</p>
-            </div>
-            <div class="p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors backdrop-blur-sm group/card2 text-left">
-                <h3 class="text-white font-bold mb-2 group-hover/card2:text-primary transition-colors">Economia Real</h3>
-                <p class="text-sm text-gray-400 leading-relaxed">Reduza custos operacionais drasticamente com nossa tecnologia de gestão energética.</p>
-            </div>
-        </div>
+        <!-- Esquerda (Cards 33%) - REMOVIDO -->
+
 
         <!-- Centro (Imagem 66% com alinhamento esquerdo) -->
-        <div class="lg:col-span-8 relative group w-full px-0">
+        <div class="lg:col-span-8 lg:col-start-3 relative group w-full px-0">
             <div class="relative group w-full">
         <div class="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-[#0a0a0a] flex items-center justify-center">
             <Image
@@ -167,8 +158,9 @@ import heroImage from '../assets/hero-tria.webp';
                             Zero manutenção e fácil extração lateral para operação contínua.
                         </p>
                     </div>
+                </div>
                 <!-- Hotspot 4 (Pneus) --> 
-                <div class="absolute top-[90%] left-[6%] hotspot-group group/h4">
+                <div class="absolute top-[75%] left-[50%] hotspot-group group/h4">
                     <div class="relative w-8 h-8 cursor-pointer">
                         <div class="absolute inset-0 rounded-full bg-gray-400/40 animate-ping"></div>
                         <div class="relative w-full h-full bg-gray-500 rounded-full flex items-center justify-center shadow-lg border-2 border-white/20">
@@ -178,7 +170,7 @@ import heroImage from '../assets/hero-tria.webp';
                             </svg>
                         </div>
                     </div>
-                    <div class="hotspot-card absolute bottom-12 left-1/2 -translate-x-1/2 w-64 p-3 rounded-2xl border border-white/10 opacity-0 -translate-y-4 scale-95 transition-all duration-300 pointer-events-none z-30 shadow-2xl group-hover/h4:opacity-100 group-hover/h4:translate-y-0 group-hover/h4:scale-100 group-hover/h4:pointer-events-auto bg-black/80 backdrop-blur-md">
+                    <div class="hotspot-card absolute bottom-12 left-full ml-4 w-64 p-3 rounded-2xl border border-white/10 opacity-0 transition-all duration-300 pointer-events-none z-30 shadow-2xl group-hover/h4:opacity-100 group-hover/h4:pointer-events-auto bg-black/80 backdrop-blur-md origin-bottom-left">
                         <div class="flex items-center gap-3 mb-2">
                             <div class="p-1.5 bg-gray-500/20 rounded-lg text-gray-400">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
