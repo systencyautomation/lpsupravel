@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Payback Analysis 48 Months V1</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "primary-dark": "#0ea641",
+                        "secondary": "#0d1b12",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                        "paper": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                    boxShadow: {
+                        'paper': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0,0,0,0.03)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>@media screen {
+            .a4-container {
+                width: 100%;
+                max-width: 210mm;
+                min-height: 297mm;
+                margin: 2rem auto;
+                background: white;
+                box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            }
+        }
+        @media print {
+            body {
+                background: white;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .a4-container {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                box-shadow: none;
+                border: none;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-secondary font-display antialiased flex flex-col items-center min-h-screen p-0 sm:p-8">
+<div class="a4-container relative flex flex-col bg-white overflow-hidden rounded-none sm:rounded-sm">
+<header class="flex justify-between items-start p-10 sm:p-12 border-b border-gray-100">
+<div class="flex flex-col gap-2">
+<h1 class="text-4xl font-black tracking-tight text-secondary">Análise de<br/>Payback 48 Meses</h1>
+<div class="h-1 w-20 bg-primary mt-2"></div>
+</div>
+<div class="text-right">
+<p class="text-xs uppercase tracking-widest text-gray-400 font-semibold mb-1">Relatório Técnico</p>
+<p class="text-secondary font-bold text-lg">Variante 01</p>
+<p class="text-sm text-gray-500 mt-1">Comparativo Econômico</p>
+</div>
+</header>
+<main class="flex-1 px-10 py-8 sm:px-12 flex flex-col gap-8">
+<section class="flex flex-col gap-6">
+<div class="flex justify-between items-end">
+<div>
+<h2 class="text-2xl font-bold text-secondary">Custo Acumulado (4 anos)</h2>
+<p class="text-gray-500 text-sm mt-1">Comparativo de OpEx: Combustão (Diesel) vs. Lithium EFX</p>
+</div>
+<div class="flex flex-col gap-2 text-xs font-medium bg-gray-50 p-3 rounded-lg border border-gray-100">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-gray-600"></span>
+<span>Diesel/Combustão: R$ 2.941/mês</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<span>Lithium EFX: R$ 1.369/mês</span>
+</div>
+</div>
+</div>
+<div class="relative w-full h-[400px] bg-gradient-to-b from-gray-50 to-white rounded-xl border border-gray-100 p-8 shadow-inner">
+<svg class="w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 800 350">
+<line stroke="#e5e7eb" stroke-dasharray="4 4" x1="50" x2="800" y1="300" y2="300"></line>
+<line stroke="#e5e7eb" stroke-dasharray="4 4" x1="50" x2="800" y1="200" y2="200"></line>
+<line stroke="#e5e7eb" stroke-dasharray="4 4" x1="50" x2="800" y1="100" y2="100"></line>
+<text fill="#9ca3af" font-size="10" x="0" y="305">R$ 100k</text>
+<text fill="#9ca3af" font-size="10" x="0" y="205">R$ 200k</text>
+<text fill="#9ca3af" font-size="10" x="0" y="105">R$ 300k</text>
+<path d="M 50 290 L 800 20" fill="none" stroke="#4b5563" stroke-width="3"></path>
+<circle cx="50" cy="290" fill="#4b5563" r="4"></circle>
+<text fill="#4b5563" font-size="12" font-weight="bold" x="750" y="40">Diesel</text>
+<path d="M 50 255 L 800 130" fill="none" stroke="#13ec5b" stroke-width="4"></path>
+<circle cx="50" cy="255" fill="#13ec5b" r="4"></circle>
+<text fill="#0ea641" font-size="12" font-weight="bold" x="750" y="120">EFX</text>
+<g transform="translate(320, 195)">
+<circle cx="0" cy="0" fill="#13ec5b" r="6" stroke="white" stroke-width="2"></circle>
+<circle cx="0" cy="0" fill="none" r="10" stroke="#13ec5b" stroke-opacity="0.3" stroke-width="8"></circle>
+<line stroke="#13ec5b" stroke-dasharray="4 4" stroke-width="1.5" x1="0" x2="0" y1="6" y2="155"></line>
+<g transform="translate(-10, -45)">
+<rect fill="#0d1b12" height="32" rx="6" shadow="true" width="160" x="-70" y="-5"></rect>
+<path d="M 0 27 L 10 37 L 20 27 Z" fill="#0d1b12" transform="translate(0,0)"></path>
+<text fill="white" font-size="11" font-weight="600" text-anchor="middle" x="10" y="15">Ponto de Payback</text>
+<text fill="#13ec5b" font-size="9" font-weight="500" text-anchor="middle" x="10" y="25">Retorno Garantido</text>
+</g>
+</g>
+<text fill="#9ca3af" font-size="11" x="50" y="340">Mês 0</text>
+<text fill="#9ca3af" font-size="11" x="237" y="340">Mês 12</text>
+<text fill="#9ca3af" font-size="11" x="425" y="340">Mês 24</text>
+<text fill="#9ca3af" font-size="11" x="612" y="340">Mês 36</text>
+<text fill="#9ca3af" font-size="11" x="780" y="340">Mês 48</text>
+</svg>
+</div>
+</section>
+<section class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
+<div class="bg-white border border-gray-200 rounded-xl p-8 shadow-sm flex flex-col justify-between hover:border-primary/50 transition-colors group h-full">
+<div class="flex items-start justify-between mb-4">
+<div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 group-hover:bg-blue-100 transition-colors">
+<span class="material-symbols-outlined text-2xl">local_gas_station</span>
+</div>
+<span class="bg-blue-50 text-blue-700 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wide">Economia Operacional</span>
+</div>
+<div>
+<h3 class="text-gray-500 text-sm font-medium mb-1">Em 12 meses</h3>
+<p class="text-2xl font-bold text-secondary leading-tight">Economia de <span class="text-blue-600">R$ 36.000+</span> em combustível</p>
+</div>
+<div class="mt-4 pt-4 border-t border-gray-100">
+<p class="text-xs text-gray-400">Calculado com base na diferença mensal de consumo energético.</p>
+</div>
+</div>
+<div class="bg-secondary text-white rounded-xl p-8 shadow-lg flex flex-col justify-between relative overflow-hidden group h-full">
+<div class="absolute -right-10 -top-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl group-hover:bg-primary/30 transition-colors"></div>
+<div class="flex items-start justify-between mb-4 relative z-10">
+<div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-primary border border-white/20">
+<span class="material-symbols-outlined text-2xl">health_and_safety</span>
+</div>
+<span class="bg-primary/20 text-primary text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wide border border-primary/20">Benefício Extra</span>
+</div>
+<div class="relative z-10">
+<h3 class="text-gray-300 text-sm font-medium mb-1">Segurança do Trabalho</h3>
+<p class="text-2xl font-bold text-white leading-tight">Redução imediata de <span class="text-primary">30%</span> no custo de periculosidade</p>
+</div>
+<div class="mt-4 pt-4 border-t border-white/10 relative z-10">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+<p class="text-xs text-gray-300">Eliminação de riscos inflamáveis (NR-16)</p>
+</div>
+</div>
+</div>
+</section>
+<section class="mt-auto pt-6 border-t border-gray-100">
+<div class="flex gap-4 items-start">
+<span class="material-symbols-outlined text-gray-400 text-xl">info</span>
+<p class="text-xs text-gray-400 leading-relaxed max-w-3xl">
+                        *A análise de Payback considera custos de aquisição inicial (CAPEX) e custos operacionais (OPEX) projetados para 48 meses. A linha de base "Diesel" inclui custos médios de manutenção preventiva e corretiva, além do consumo de combustível. A linha "Lithium EFX" contempla o investimento inicial no retrofit e custo de energia elétrica, com manutenção reduzida. Valores podem variar conforme a intensidade de uso e tarifas locais de energia.
+                     </p>
+</div>
+</section>
+</main>
+<footer class="bg-gray-50 border-t border-gray-100 p-8 sm:px-12 sm:py-8">
+<div class="flex flex-col sm:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-4">
+<div class="bg-white p-2 rounded-lg border border-gray-200 shadow-sm">
+<div class="w-16 h-16 bg-gray-900 flex items-center justify-center rounded">
+<span class="material-symbols-outlined text-white text-3xl">qr_code_2</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-sm font-bold text-secondary">Acesse o estudo completo</p>
+<p class="text-xs text-gray-500 max-w-[200px] leading-tight">Escaneie para visualizar a planilha detalhada de ROI.</p>
+</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<p class="text-xs font-semibold text-secondary uppercase tracking-wider">Supravel Energy Solutions</p>
+<p class="text-[10px] text-gray-400">© 2024 Todos os direitos reservados.</p>
+</div>
+</div>
+</footer>
+</div>
+
+</body></html>
