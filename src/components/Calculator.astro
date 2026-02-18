@@ -15,13 +15,10 @@
                     Calculadora de Eficiência
                 </h2>
                 <p class="text-sm text-gray-400 font-light mt-1">
-                    Compare sua operação atual com a tecnologia Lítio EFX.
+                    Compare sua operação atual com a tecnologia Lítio.
                 </p>
             </div>
-            <div class="flex items-center gap-2 text-xs text-gray-500 bg-white/5 px-3 py-1 rounded border border-white/5">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                Dados atualizados: 2024
-            </div>
+
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full items-stretch">
@@ -211,9 +208,9 @@
                 <span class="material-symbols-outlined">close</span>
             </button>
 
-            <!-- Form State -->
+            <!-- Form State (GHL Embedded) -->
             <div id="modal-form-state" class="p-8">
-                <div class="text-center mb-8">
+                <div class="text-center mb-6">
                     <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                         <span class="material-symbols-outlined text-3xl text-primary">assignment_turned_in</span>
                     </div>
@@ -223,35 +220,29 @@
                     </p>
                 </div>
 
-                <form id="lead-form" class="space-y-4">
-                    <div>
-                        <label for="name" class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">Nome</label>
-                        <input type="text" id="name" name="name" required placeholder="Seu nome" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all">
-                    </div>
-                    
-                    <div>
-                        <label for="email" class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">E-mail Corporativo</label>
-                        <input type="email" id="email" name="email" required placeholder="empresa@email.com.br" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all">
-                    </div>
-
-                    <div>
-                        <label for="whatsapp" class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">WhatsApp</label>
-                        <input type="tel" id="whatsapp" name="whatsapp" required placeholder="(00) 00000-0000" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all">
-                    </div>
-
-                    <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-white font-bold py-4 rounded-lg shadow-lg hover:shadow-[0_0_20px_-5px_rgba(237,28,36,0.6)] transition-all transform hover:-translate-y-0.5 mt-2 flex items-center justify-center gap-2">
-                        <span>GERAR MEU PDF AGORA</span>
-                        <span class="material-symbols-outlined">arrow_forward</span>
-                    </button>
-                    
-                    <p class="text-[10px] text-center text-gray-500 mt-4">
-                        <span class="material-symbols-outlined text-[12px] align-text-bottom mr-1">lock</span>
-                        Seus dados estão seguros. Não enviamos spam.
-                    </p>
-                </form>
+                <!-- GHL Form Embed -->
+                <div class="ghl-form-wrapper rounded-lg overflow-hidden" style="min-height: 490px;">
+                    <iframe
+                        src="https://links.kordian.com.br/widget/form/Q9rFe3aceEpFOyYQCKjF"
+                        style="width:100%;height:490px;border:none;border-radius:8px"
+                        id="inline-Q9rFe3aceEpFOyYQCKjF" 
+                        data-layout="{'id':'INLINE'}"
+                        data-trigger-type="alwaysShow"
+                        data-trigger-value=""
+                        data-activation-type="alwaysActivated"
+                        data-activation-value=""
+                        data-deactivation-type="neverDeactivate"
+                        data-deactivation-value=""
+                        data-form-name="Form LP"
+                        data-height="490"
+                        data-layout-iframe-id="inline-Q9rFe3aceEpFOyYQCKjF"
+                        data-form-id="Q9rFe3aceEpFOyYQCKjF"
+                        title="Form LP"
+                    ></iframe>
+                </div>
 
                 <!-- Value Props (Inside Modal for higher conversion) -->
-                <div class="mt-8 pt-6 border-t border-white/5 grid grid-cols-2 gap-4">
+                <div class="mt-6 pt-5 border-t border-white/5 grid grid-cols-2 gap-4">
                     <div class="flex items-start gap-2">
                          <span class="material-symbols-outlined text-emerald-500 text-lg">calendar_month</span>
                          <div class="text-xs text-gray-400"><strong class="text-white block mb-0.5">Payback Real</strong>Cronograma mês a mês</div>
@@ -272,22 +263,25 @@
             </div>
 
             <!-- Success State -->
-            <div id="modal-success-state" class="p-12 hidden flex flex-col items-center justify-center text-center h-full min-h-[500px]">
+            <div id="modal-success-state" class="p-12 hidden flex flex-col items-center justify-center text-center h-full min-h-[400px]">
                 <div class="w-20 h-20 bg-emerald-500/20 rounded-full flex items-center justify-center mb-6 animate-pulse">
                     <span class="material-symbols-outlined text-5xl text-emerald-500">check_circle</span>
                 </div>
                 <h3 class="text-2xl font-bold text-white mb-2">Sucesso!</h3>
-                <p class="text-gray-300 max-w-xs mx-auto mb-8">
-                    Seu relatório está sendo processado. Em menos de 2 minutos, ele chegará no seu WhatsApp e E-mail.
+                <p class="text-gray-300 max-w-xs mx-auto mb-4">
+                    Seu relatório PDF está sendo gerado. Você também receberá tudo por WhatsApp e E-mail.
                 </p>
-                <div class="w-full bg-gray-800 rounded-full h-1.5 overflow-hidden max-w-[200px]">
+                <div class="w-full bg-gray-800 rounded-full h-1.5 overflow-hidden max-w-[200px] mb-2">
                      <div class="bg-emerald-500 h-full rounded-full animate-[progress_2s_ease-in-out_infinite]" style="width: 50%"></div>
                 </div>
-                <p class="text-xs text-gray-500 mt-2">Enviando solicitação...</p>
+                <p class="text-xs text-gray-500">Gerando PDF...</p>
             </div>
         </div>
     </div>
 </section>
+
+<!-- GHL Form Embed Script -->
+<script src="https://links.kordian.com.br/js/form_embed.js"></script>
 
 <style>
     /* Custom Styles if needed, most are Utility classes */
@@ -417,13 +411,14 @@
         const closeBtn = document.getElementById('close-modal-btn');
         const backdrop = document.getElementById('modal-backdrop');
         const modalContent = document.getElementById('modal-content');
-        const form = document.getElementById('lead-form');
         const formState = document.getElementById('modal-form-state');
         const successState = document.getElementById('modal-success-state');
 
+        let formSubmitted = false;
+
         function openModal() {
+            formSubmitted = false;
             modal.classList.remove('hidden');
-            // Timeout to allow display:block to apply before opacity transition
             setTimeout(() => {
                 backdrop.classList.remove('opacity-0');
                 modalContent.classList.remove('opacity-0', 'scale-95');
@@ -438,14 +433,27 @@
             
             setTimeout(() => {
                 modal.classList.add('hidden');
-                // Reset form state on close after delay
                 setTimeout(() => {
                     formState.classList.remove('hidden');
                     successState.classList.add('hidden');
                     successState.classList.remove('flex');
-                    form.reset();
                 }, 200);
             }, 300);
+        }
+
+        function onFormSubmitted() {
+            if (formSubmitted) return;
+            formSubmitted = true;
+
+            // Show Success State
+            formState.classList.add('hidden');
+            successState.classList.remove('hidden');
+            successState.classList.add('flex');
+
+            // Generate PDF after short delay
+            setTimeout(() => {
+                generatePDF({}, state);
+            }, 1500);
         }
 
         if(openBtn) openBtn.addEventListener('click', openModal);
@@ -459,29 +467,53 @@
             }
         });
 
-        // Form Submit
-        if(form) {
-            form.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                
-                // Collect data (for future backend integration)
-                const formData = new FormData(form);
-                const data = Object.fromEntries(formData);
-                console.log('Lead Captured:', data);
+        // Listen for GHL form submission via postMessage
+        window.addEventListener('message', (event) => {
+            // GHL forms send messages on submission
+            if (event.data && typeof event.data === 'object') {
+                // GHL form submission detection
+                if (event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormSubmit') {
+                    onFormSubmitted();
+                }
+                // Alternative GHL message format
+                if (event.data.formId === 'Q9rFe3aceEpFOyYQCKjF' || event.data.type === 'form:submit') {
+                    onFormSubmitted();
+                }
+            }
+            // Some GHL forms send string messages
+            if (typeof event.data === 'string') {
+                try {
+                    const parsed = JSON.parse(event.data);
+                    if (parsed.type === 'form:submit' || parsed.formSubmitted || parsed.event === 'formSubmit') {
+                        onFormSubmitted();
+                    }
+                } catch(e) {
+                    // Check for simple string signals
+                    if (event.data.includes('formSubmit') || event.data.includes('form_submit') || event.data.includes('thankyou')) {
+                        onFormSubmitted();
+                    }
+                }
+            }
+        });
 
-                // Show Success State
-                formState.classList.add('hidden');
-                successState.classList.remove('hidden');
-                successState.classList.add('flex');
+        // Fallback: Monitor iframe for URL changes (thank you page redirect)
+        const ghlIframe = document.getElementById('inline-Q9rFe3aceEpFOyYQCKjF');
+        if (ghlIframe) {
+            const checkIframe = setInterval(() => {
+                try {
+                    // If iframe navigated away from form (to thank you page), form was submitted
+                    const iframeDoc = ghlIframe.contentDocument || ghlIframe.contentWindow?.document;
+                    if (iframeDoc && iframeDoc.querySelector('.thank-you, .success-message, [data-thank-you]')) {
+                        onFormSubmitted();
+                        clearInterval(checkIframe);
+                    }
+                } catch(e) {
+                    // Cross-origin - can't access iframe content, rely on postMessage
+                }
+            }, 1000);
 
-                // Generate PDF after a short delay to simulate "processing"
-                setTimeout(() => {
-                    generatePDF(data, state);
-                }, 1500);
-
-                // Auto Close after 5 seconds
-                // setTimeout(closeModal, 5000);
-            });
+            // Stop checking after 5 minutes
+            setTimeout(() => clearInterval(checkIframe), 300000);
         }
     }
 
