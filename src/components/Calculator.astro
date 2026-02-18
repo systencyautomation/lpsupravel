@@ -838,11 +838,11 @@
             doc.setFontSize(14);
             doc.setTextColor(...darkColor);
             doc.setFont(undefined, 'bold');
-            doc.text("Custo Acumulado (4 anos)", 20, currentY);
+            doc.text("Custo Acumulado (5 anos)", 20, currentY);
             doc.setFont(undefined, 'normal');
             doc.setFontSize(9);
             doc.setTextColor(100, 100, 100);
-            doc.text(`Comparativo de OpEx: Combustão (${fuelLabel}) vs. Lithium EFX`, 20, currentY + 6);
+            doc.text(`Comparativo de OpEx: Combustão (${fuelLabel}) vs. Lítio`, 20, currentY + 6);
 
             // --- Legend Box (top right, like reference) ---
             const legendX = 145;
@@ -873,13 +873,13 @@
             doc.setDrawColor(230, 230, 230);
             doc.roundedRect(graphX - 5, graphY - 5, graphWidth + 15, graphHeight + 20, 3, 3, 'FD');
 
-            // TCO at key points
-            const months = 48;
+            // TCO at key points (5 years = 60 months)
+            const months = 60;
             const lineStartDiesel = totalAcquisitionCurrent;
             const lineStartLithium = totalAcquisitionLithium;
-            const maxCostAt48_Diesel = lineStartDiesel + (currentMonthlyTotal * 48);
-            const maxCostAt48_Lithium = lineStartLithium + (lithiumMonthlyTotal * 48);
-            const maxY = Math.max(maxCostAt48_Diesel, maxCostAt48_Lithium) * 1.15;
+            const maxCostAt60_Diesel = lineStartDiesel + (currentMonthlyTotal * 60);
+            const maxCostAt60_Lithium = lineStartLithium + (lithiumMonthlyTotal * 60);
+            const maxY = Math.max(maxCostAt60_Diesel, maxCostAt60_Lithium) * 1.15;
             const minY = 0;
 
             const getX = (month) => graphX + ((month / months) * graphWidth);
@@ -901,10 +901,10 @@
             }
             doc.setLineDash([], 0);
 
-            // X-axis month labels (0, 12, 24, 36, 48)
+            // X-axis month labels (0, 12, 24, 36, 48, 60)
             doc.setFontSize(7);
             doc.setTextColor(...grayText);
-            const monthLabels = [0, 12, 24, 36, 48];
+            const monthLabels = [0, 12, 24, 36, 48, 60];
             monthLabels.forEach(m => {
                 doc.text(`Mês ${m}`, getX(m), graphY + graphHeight + 6, { align: 'center' });
             });
@@ -912,7 +912,7 @@
             // Draw Diesel Line (dark gray, thinner)
             doc.setDrawColor(75, 85, 99);
             doc.setLineWidth(0.8);
-            doc.line(getX(0), getYVal(lineStartDiesel), getX(48), getYVal(maxCostAt48_Diesel));
+            doc.line(getX(0), getYVal(lineStartDiesel), getX(60), getYVal(maxCostAt60_Diesel));
             // Start dot
             doc.setFillColor(75, 85, 99);
             doc.circle(getX(0), getYVal(lineStartDiesel), 1, 'F');
@@ -920,13 +920,13 @@
             doc.setFontSize(8);
             doc.setTextColor(75, 85, 99);
             doc.setFont(undefined, 'bold');
-            doc.text(fuelLabel, getX(48) - 2, getYVal(maxCostAt48_Diesel) - 3, { align: 'right' });
+            doc.text(fuelLabel, getX(60) - 2, getYVal(maxCostAt60_Diesel) - 3, { align: 'right' });
             doc.setFont(undefined, 'normal');
 
             // Draw Lithium Line (green, thicker)
             doc.setDrawColor(...primaryColor);
             doc.setLineWidth(1.2);
-            doc.line(getX(0), getYVal(lineStartLithium), getX(48), getYVal(maxCostAt48_Lithium));
+            doc.line(getX(0), getYVal(lineStartLithium), getX(60), getYVal(maxCostAt60_Lithium));
             // Start dot
             doc.setFillColor(...primaryColor);
             doc.circle(getX(0), getYVal(lineStartLithium), 1, 'F');
@@ -934,140 +934,227 @@
             doc.setFontSize(8);
             doc.setTextColor(...primaryDark);
             doc.setFont(undefined, 'bold');
-            doc.text("EFX", getX(48) - 2, getYVal(maxCostAt48_Lithium) - 3, { align: 'right' });
+            doc.text("Lítio", getX(60) - 2, getYVal(maxCostAt60_Lithium) - 3, { align: 'right' });
             doc.setFont(undefined, 'normal');
 
-            // --- Payback Point (Intersection) ---
-            if (results.paybackMonths > 0 && results.paybackMonths <= 48) {
-                const px = getX(results.paybackMonths);
-                const costAtPayback = lineStartLithium + (lithiumMonthlyTotal * results.paybackMonths);
-                const py = getYVal(costAtPayback);
+            // --- DUAL PAYBACK CALCULATIONS ---
+            const monthlyDiff = currentMonthlyTotal - lithiumMonthlyTotal;
+            
+            // Payback 1: Diferença de investimento (intersection of TCO lines)
+            const paybackDiffMonth = monthlyDiff > 0 ? (lineStartLithium - lineStartDiesel) / monthlyDiff : -1;
+            
+            // Payback 2: Valor total do produto (total lithium cost / monthly savings)
+            const paybackTotalMonth = monthlyDiff > 0 ? totalAcquisitionLithium / (monthlySavings) : -1;
 
-                // Glow circle (outer)
-                doc.setFillColor(19, 236, 91);
+            // --- Helper: Draw payback marker on graph ---
+            function drawPaybackMarker(doc, month, color, label, tooltipSide) {
+                if (month < 0 || month > 60) return;
+                
+                const px = getX(month);
+                const costAtPoint = lineStartLithium + (lithiumMonthlyTotal * month);
+                const py = getYVal(costAtPoint);
+                
+                // Vertical dashed line (full height)
+                doc.setDrawColor(...color);
+                doc.setLineWidth(0.4);
+                doc.setLineDash([2, 2], 0);
+                doc.line(px, graphY, px, graphY + graphHeight);
+                doc.setLineDash([], 0);
+                
+                // Glow circle
+                doc.setFillColor(...color);
                 doc.setGState(new doc.GState({ opacity: 0.15 }));
                 doc.circle(px, py, 5, 'F');
                 doc.setGState(new doc.GState({ opacity: 1 }));
                 // Inner dot
-                doc.setFillColor(...primaryColor);
+                doc.setFillColor(...color);
                 doc.circle(px, py, 2, 'F');
-                // White inner
                 doc.setFillColor(255, 255, 255);
                 doc.circle(px, py, 0.7, 'F');
-
-                // Dashed line down to X-axis
-                doc.setDrawColor(...primaryColor);
-                doc.setLineWidth(0.4);
-                doc.setLineDash([1.5, 1.5], 0);
-                doc.line(px, py + 5, px, graphY + graphHeight);
-                doc.setLineDash([], 0);
-
-                // Tooltip box (dark bg with payback info)
-                const tooltipW = 42;
-                const tooltipH = 16;
+                
+                // Tooltip
+                const monthText = `${Math.ceil(month)} meses`;
+                const tooltipW = 44;
+                const tooltipH = 17;
                 const tooltipX = px - tooltipW / 2;
-                const tooltipY = py - tooltipH - 10;
+                const tooltipY = tooltipSide === 'top' ? py - tooltipH - 8 : py + 8;
                 
                 doc.setFillColor(...darkColor);
                 doc.roundedRect(tooltipX, tooltipY, tooltipW, tooltipH, 2, 2, 'F');
-                // Arrow pointing down
-                doc.triangle(px - 3, tooltipY + tooltipH, px + 3, tooltipY + tooltipH, px, tooltipY + tooltipH + 4, 'F');
                 
-                // Tooltip text - "Ponto de Payback"
-                doc.setFontSize(7);
-                doc.setTextColor(255, 255, 255);
+                if (tooltipSide === 'top') {
+                    doc.triangle(px - 3, tooltipY + tooltipH, px + 3, tooltipY + tooltipH, px, tooltipY + tooltipH + 3, 'F');
+                } else {
+                    doc.triangle(px - 3, tooltipY, px + 3, tooltipY, px, tooltipY - 3, 'F');
+                }
+                
+                // Label text
+                doc.setFontSize(5.5);
+                doc.setTextColor(200, 200, 200);
+                doc.text(label, px, tooltipY + 5.5, { align: 'center' });
+                // Month number
+                doc.setFontSize(9);
+                doc.setTextColor(...color);
                 doc.setFont(undefined, 'bold');
-                doc.text("Ponto de Payback", px, tooltipY + 6, { align: 'center' });
-                // Green subtitle - "Retorno Garantido"
-                doc.setFontSize(6);
-                doc.setTextColor(...primaryColor);
-                doc.text("Retorno Garantido", px, tooltipY + 11, { align: 'center' });
+                doc.text(monthText, px, tooltipY + 12.5, { align: 'center' });
                 doc.setFont(undefined, 'normal');
-
-                // X-axis label with months (prominent, below the graph)
-                const paybackLabel = `${results.paybackMonths.toFixed(1)} meses`;
-                doc.setFillColor(...primaryColor);
-                const labelW = doc.getTextWidth(paybackLabel) + 6;
-                doc.roundedRect(px - labelW / 2, graphY + graphHeight + 3, labelW, 6, 1, 1, 'F');
-                doc.setFontSize(7);
-                doc.setTextColor(255, 255, 255);
+                
+                // X-axis badge
+                const badgeLabel = `${Math.ceil(month)}m`;
                 doc.setFont(undefined, 'bold');
-                doc.text(paybackLabel, px, graphY + graphHeight + 7.5, { align: 'center' });
+                doc.setFontSize(6);
+                const bw = doc.getTextWidth(badgeLabel) + 5;
+                doc.setFillColor(...color);
+                doc.roundedRect(px - bw / 2, graphY + graphHeight + 2, bw, 6, 1, 1, 'F');
+                doc.setTextColor(255, 255, 255);
+                doc.text(badgeLabel, px, graphY + graphHeight + 6.5, { align: 'center' });
                 doc.setFont(undefined, 'normal');
             }
 
-            // --- TWO CARDS BELOW GRAPH (Economia Operacional + Benefício Extra) ---
-            const cardsY = graphY + graphHeight + 22;
-            const cardW = 82;
-            const cardH = 42;
-
-            // Card 1: Economia Operacional (white/light)
-            doc.setDrawColor(220, 220, 220);
-            doc.setFillColor(255, 255, 255);
-            doc.roundedRect(20, cardsY, cardW, cardH, 3, 3, 'FD');
+            // Draw Payback 1 (Diferença) - Green
+            if (paybackDiffMonth >= 0 && paybackDiffMonth <= 60) {
+                drawPaybackMarker(doc, paybackDiffMonth, primaryColor, 'Payback Diferença', 'top');
+            }
             
-            // Badge
-            doc.setFillColor(235, 245, 255);
-            doc.roundedRect(55, cardsY + 3, 28, 5, 1, 1, 'F');
+            // Draw Payback 2 (Total) - Blue
+            const blueColor = [59, 130, 246];
+            if (paybackTotalMonth > 0 && paybackTotalMonth <= 60) {
+                drawPaybackMarker(doc, paybackTotalMonth, blueColor, 'Payback Total', 'bottom');
+            }
+
+            // If diff payback is immediate (negative), show badge
+            if (paybackDiffMonth < 0 && monthlyDiff > 0) {
+                // Small "imediato" badge at graph start
+                doc.setFillColor(...primaryColor);
+                doc.roundedRect(graphX + 2, graphY + 3, 24, 6, 1, 1, 'F');
+                doc.setFontSize(5);
+                doc.setTextColor(255, 255, 255);
+                doc.setFont(undefined, 'bold');
+                doc.text("IMEDIATO", graphX + 14, graphY + 7, { align: 'center' });
+                doc.setFont(undefined, 'normal');
+            }
+
+            // --- THREE CARDS BELOW GRAPH ---
+            const cardsY = graphY + graphHeight + 22;
+            const card3W = 53;
+            const card3H = 38;
+            const cardGap = 3.5;
+
+            // Card 1: Payback Diferença (green accent)
+            const c1x = 20;
+            doc.setDrawColor(16, 185, 129);
+            doc.setLineWidth(0.3);
+            doc.setFillColor(240, 253, 244);
+            doc.roundedRect(c1x, cardsY, card3W, card3H, 2, 2, 'FD');
+            doc.setFillColor(16, 185, 129);
+            doc.rect(c1x, cardsY, card3W, 1.5, 'F');
+            
+            doc.setFontSize(5.5);
+            doc.setTextColor(16, 185, 129);
+            doc.setFont(undefined, 'bold');
+            doc.text("PAYBACK DIFERENÇA", c1x + 3, cardsY + 7);
+            doc.setFont(undefined, 'normal');
+            
+            if (paybackDiffMonth >= 0 && paybackDiffMonth <= 60) {
+                doc.setFontSize(16);
+                doc.setTextColor(5, 122, 85);
+                doc.setFont(undefined, 'bold');
+                doc.text(`${Math.ceil(paybackDiffMonth)}`, c1x + 3, cardsY + 18);
+                doc.setFontSize(8);
+                doc.text("meses", c1x + 3 + doc.getTextWidth(`${Math.ceil(paybackDiffMonth)}`) + 2, cardsY + 18);
+                doc.setFont(undefined, 'normal');
+            } else {
+                doc.setFontSize(12);
+                doc.setTextColor(5, 122, 85);
+                doc.setFont(undefined, 'bold');
+                doc.text("Imediato", c1x + 3, cardsY + 18);
+                doc.setFont(undefined, 'normal');
+            }
             doc.setFontSize(5);
-            doc.setTextColor(29, 78, 216);
+            doc.setTextColor(100, 116, 139);
+            doc.text("Investimento extra:", c1x + 3, cardsY + 25);
+            const diffValue = totalAcquisitionLithium - totalAcquisitionCurrent;
             doc.setFont(undefined, 'bold');
-            doc.text("ECONOMIA EM 5 ANOS", 69, cardsY + 6.5, { align: 'center' });
+            doc.text(formatMoney(Math.abs(diffValue)), c1x + 3, cardsY + 30);
             doc.setFont(undefined, 'normal');
+            doc.setFontSize(4.5);
+            doc.setTextColor(150, 150, 150);
+            doc.text(`Economia: ${formatMoney(monthlySavings)}/mês`, c1x + 3, cardsY + 35);
 
-            // Text
-            doc.setFontSize(8);
-            doc.setTextColor(100, 100, 100);
-            doc.text("Em 60 meses (5 anos)", 25, cardsY + 15);
-            doc.setFontSize(14);
-            doc.setTextColor(29, 78, 216);
+            // Card 2: Payback Total (blue accent)
+            const c2x = c1x + card3W + cardGap;
+            doc.setDrawColor(59, 130, 246);
+            doc.setLineWidth(0.3);
+            doc.setFillColor(239, 246, 255);
+            doc.roundedRect(c2x, cardsY, card3W, card3H, 2, 2, 'FD');
+            doc.setFillColor(59, 130, 246);
+            doc.rect(c2x, cardsY, card3W, 1.5, 'F');
+            
+            doc.setFontSize(5.5);
+            doc.setTextColor(59, 130, 246);
             doc.setFont(undefined, 'bold');
-            doc.text(formatMoney(monthlySavings * 60), 25, cardsY + 24);
-            doc.setFontSize(9);
-            doc.setTextColor(...darkColor);
-            doc.text("em custos operacionais", 25, cardsY + 31);
+            doc.text("PAYBACK TOTAL", c2x + 3, cardsY + 7);
             doc.setFont(undefined, 'normal');
-            doc.setFontSize(6);
-            doc.setTextColor(...grayText);
-            doc.text("Combustível + Manutenção", 25, cardsY + 36);
+            
+            if (paybackTotalMonth > 0 && paybackTotalMonth <= 60) {
+                doc.setFontSize(16);
+                doc.setTextColor(29, 78, 216);
+                doc.setFont(undefined, 'bold');
+                doc.text(`${Math.ceil(paybackTotalMonth)}`, c2x + 3, cardsY + 18);
+                doc.setFontSize(8);
+                doc.text("meses", c2x + 3 + doc.getTextWidth(`${Math.ceil(paybackTotalMonth)}`) + 2, cardsY + 18);
+                doc.setFont(undefined, 'normal');
+            } else {
+                doc.setFontSize(10);
+                doc.setTextColor(29, 78, 216);
+                doc.setFont(undefined, 'bold');
+                doc.text("+60 meses", c2x + 3, cardsY + 18);
+                doc.setFont(undefined, 'normal');
+            }
+            doc.setFontSize(5);
+            doc.setTextColor(100, 116, 139);
+            doc.text("Valor total investido:", c2x + 3, cardsY + 25);
+            doc.setFont(undefined, 'bold');
+            doc.text(formatMoney(totalAcquisitionLithium), c2x + 3, cardsY + 30);
+            doc.setFont(undefined, 'normal');
+            doc.setFontSize(4.5);
+            doc.setTextColor(150, 150, 150);
+            doc.text(`Economia: ${formatMoney(monthlySavings)}/mês`, c2x + 3, cardsY + 35);
 
-            // Card 2: Benefício Extra (dark bg like reference)
+            // Card 3: Economia 5 Anos (dark bg)
+            const c3x = c2x + card3W + cardGap;
             doc.setFillColor(...darkColor);
-            doc.roundedRect(108, cardsY, cardW, cardH, 3, 3, 'F');
-
-            // Badge
-            doc.setFillColor(19, 236, 91, 0.2);
-            doc.roundedRect(150, cardsY + 3, 22, 5, 1, 1, 'F');
-            doc.setFontSize(5);
+            doc.roundedRect(c3x, cardsY, card3W, card3H, 2, 2, 'F');
+            
+            doc.setFontSize(5.5);
             doc.setTextColor(...primaryColor);
             doc.setFont(undefined, 'bold');
-            doc.text("BENEFÍCIO EXTRA", 161, cardsY + 6.5, { align: 'center' });
+            doc.text("ECONOMIA 5 ANOS", c3x + 3, cardsY + 7);
             doc.setFont(undefined, 'normal');
-
-            // Text
-            doc.setFontSize(8);
-            doc.setTextColor(180, 180, 180);
-            doc.text("Segurança do Trabalho", 113, cardsY + 15);
-            doc.setFontSize(14);
-            doc.setTextColor(...primaryColor);
-            doc.setFont(undefined, 'bold');
-            doc.text("-30%", 113, cardsY + 24);
-            doc.setFontSize(9);
+            
+            doc.setFontSize(13);
             doc.setTextColor(255, 255, 255);
-            doc.text("no custo de periculosidade", 113, cardsY + 31);
+            doc.setFont(undefined, 'bold');
+            doc.text(formatMoneyShort(monthlySavings * 60), c3x + 3, cardsY + 18);
             doc.setFont(undefined, 'normal');
-            // Checkmark line
-            doc.setFontSize(6);
+            
+            doc.setFontSize(5);
             doc.setTextColor(180, 180, 180);
-            doc.text("✓ Eliminação de riscos inflamáveis (NR-16)", 113, cardsY + 36);
+            doc.text("em custos operacionais", c3x + 3, cardsY + 25);
+            doc.setFontSize(4.5);
+            doc.setTextColor(150, 150, 150);
+            doc.text(`${formatMoney(monthlySavings)}/mês × 60`, c3x + 3, cardsY + 30);
+            // Benefício extra line
+            doc.setTextColor(...primaryColor);
+            doc.text("✓ -30% periculosidade (NR-16)", c3x + 3, cardsY + 35);
 
             // --- Disclaimer ---
-            const disclaimerY = cardsY + cardH + 12;
+            const disclaimerY = cardsY + card3H + 12;
             doc.setDrawColor(230, 230, 230);
             doc.line(20, disclaimerY - 3, 190, disclaimerY - 3);
             doc.setFontSize(6);
             doc.setTextColor(...grayText);
-            const disclaimer = "*A análise de Payback considera custos de aquisição inicial (CAPEX) e custos operacionais (OPEX) projetados para 48 meses. A linha de base inclui custos médios de manutenção preventiva e corretiva, além do consumo de combustível. A linha \"Lithium EFX\" contempla o investimento inicial e custo de energia elétrica, com manutenção reduzida. Valores podem variar conforme a intensidade de uso e tarifas locais de energia.";
+            const disclaimer = "*A análise de Payback considera dois cenários: (1) Payback da Diferença — tempo de retorno do investimento adicional, e (2) Payback Total — tempo para o valor total do equipamento se pagar via economia operacional. Custos projetados para 60 meses. Valores podem variar conforme a intensidade de uso e tarifas locais de energia.";
             const splitDisclaimer = doc.splitTextToSize(disclaimer, 170);
             doc.text(splitDisclaimer, 20, disclaimerY);
 
