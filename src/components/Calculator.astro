@@ -450,9 +450,14 @@
             successState.classList.remove('hidden');
             successState.classList.add('flex');
 
-            // Generate PDF after short delay
+            // Generate PDF after short delay and then redirect
             setTimeout(() => {
                 generatePDF({}, state);
+                
+                // Redirect to thank you page after PDF download starts
+                setTimeout(() => {
+                    window.location.href = '/obrigado';
+                }, 1000);
             }, 1500);
         }
 
