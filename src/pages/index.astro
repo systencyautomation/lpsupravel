@@ -41,5 +41,20 @@ import SEO from '../components/SEO.astro';
             data-resources-url="https://beta.leadconnectorhq.com/chat-widget/loader.js" 
             data-widget-id="69960383f3036723ce5e73e2">
         </script>
+        <!-- Cleanup stray GTM text nodes -->
+        <script is:inline>
+            // Remove errant G- text nodes sometimes injected by misconfigured GTM scripts
+            document.addEventListener('DOMContentLoaded', () => {
+                const walk = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+                const nodesToRemove = [];
+                let node;
+                while (node = walk.nextNode()) {
+                    if (node.nodeValue && node.nodeValue.trim().startsWith('G-')) {
+                        nodesToRemove.push(node);
+                    }
+                }
+                nodesToRemove.forEach(n => n.remove());
+            });
+        </script>
 	</body>
 </html>
