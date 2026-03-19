@@ -445,10 +445,10 @@ export default function ROICalculator() {
                                     <p className="text-xs text-gray-500">Inclui análise de energia, manutenção e custos de reposição.</p>
                                 </div>
                             </div>
-                            <button className="w-full sm:w-auto px-6 py-3 bg-primary hover:bg-red-600 text-white font-medium rounded-lg shadow-lg shadow-primary/20 transition-all flex items-center justify-center gap-2 group cursor-pointer">
-                                <span>Baixar Relatório</span>
-                                <span className="material-icons-round text-sm group-hover:translate-x-1 transition-transform">arrow_downward</span>
-                            </button>
+                            <a href="https://wa.me/555499164669" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto px-6 py-3 bg-primary hover:bg-red-600 text-white font-medium rounded-lg shadow-lg shadow-primary/20 transition-all flex items-center justify-center gap-2 group cursor-pointer">
+                                <span>Solicitar Relatório no WhatsApp</span>
+                                <span className="material-icons-round text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                            </a>
                         </div>
                     </motion.div>
                 </div>

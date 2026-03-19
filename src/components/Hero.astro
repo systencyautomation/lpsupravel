@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import heroImage from '../assets/hero-tria.webp';
 ---
 
-<section class="relative min-h-screen flex flex-col justify-center overflow-hidden">
+<section id="empilhadeiras" class="relative min-h-screen flex flex-col justify-center overflow-hidden">
   <div class="absolute inset-0 z-0 pointer-events-none opacity-[0.15] bg-grid-pattern"></div>
   <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] hero-glow pointer-events-none"></div>
   
@@ -30,18 +30,7 @@ import heroImage from '../assets/hero-tria.webp';
         Líder em tecnologia de Lítio no Rio Grande do Sul. Logística inteligência.
     </p>
 
-    <!-- Static Buttons (No React needed) -->
-    <div class="hero-fade-in flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="https://wa.me/555499164669" target="_blank" rel="noopener noreferrer" class="group relative px-8 py-4 bg-primary hover:bg-red-600 text-white text-base font-semibold rounded-lg shadow-lg shadow-primary/25 transition-all duration-300 transform hover:-translate-y-1 overflow-hidden cursor-pointer">
-            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-            <span class="relative flex items-center gap-2">
-                Solicitar Orçamento
-            </span>
-        </a>
-        <a href="https://wa.me/555499164669" target="_blank" rel="noopener noreferrer" class="px-8 py-4 bg-transparent text-gray-300 hover:text-white text-base font-medium rounded-lg border border-white/10 hover:border-white/30 hover:bg-white/5 transition-all duration-300 flex items-center gap-2 cursor-pointer">
-            Falar com Especialista
-        </a>
-    </div>
+
   </div>
 
   <!-- Static Image & Hotspots - Critical for LCP -->
@@ -50,8 +39,8 @@ import heroImage from '../assets/hero-tria.webp';
         <!-- Esquerda (Cards 33%) - REMOVIDO -->
 
 
-        <!-- Centro (Imagem 66% com alinhamento esquerdo) -->
-        <div class="lg:col-span-8 lg:col-start-3 relative group w-full px-0">
+        <!-- Imagem Esquerda -->
+        <div class="lg:col-span-7 relative group w-full px-0 order-2 lg:order-1 mt-10 lg:mt-0">
             <div class="relative group w-full">
         <div class="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-[#0a0a0a] flex items-center justify-center">
             <Image
@@ -192,6 +181,45 @@ import heroImage from '../assets/hero-tria.webp';
             </div>
         </div>
     </div>
+        </div>
+
+        <!-- Formulário Direita -->
+        <div class="lg:col-span-5 relative w-full order-1 lg:order-2">
+            <div class="glass-card rounded-3xl p-6 md:p-8 relative overflow-hidden backdrop-blur-xl bg-[#0a0a0a]/80 border border-white/10 shadow-2xl flex flex-col h-full justify-center">
+                <div class="absolute -top-40 -right-40 w-96 h-96 bg-primary/20 blur-[120px] rounded-full pointer-events-none z-0"></div>
+                <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-emerald-500/10 blur-[100px] rounded-full pointer-events-none z-0"></div>
+                
+                <div class="relative z-10 mb-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-gray-300 text-[10px] font-semibold uppercase tracking-wider mb-4">
+                        <span class="material-symbols-outlined text-[14px] text-primary">speed</span>
+                        Resposta em 15 minutos
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2">Solicite um Orçamento</h3>
+                    <p class="text-sm text-gray-400">Preencha seus dados para conversarmos sobre a sua operação e gerar uma cotação exata.</p>
+                </div>
+
+                <div class="relative w-full min-h-[420px] z-10">
+                    <iframe
+                        src="https://links.kordian.com.br/widget/form/VI0BjQ56e3YSBb36HNJf"
+                        style="width:100%;height:100%;min-height:420px;border:none;border-radius:3px"
+                        id="inline-VI0BjQ56e3YSBb36HNJf" 
+                        data-layout="{'id':'INLINE'}"
+                        data-trigger-type="alwaysShow"
+                        data-trigger-value=""
+                        data-activation-type="alwaysActivated"
+                        data-activation-value=""
+                        data-deactivation-type="neverDeactivate"
+                        data-deactivation-value=""
+                        data-form-name="Form LP - hero"
+                        data-height="undefined"
+                        data-layout-iframe-id="inline-VI0BjQ56e3YSBb36HNJf"
+                        data-form-id="VI0BjQ56e3YSBb36HNJf"
+                        title="Form LP - hero"
+                            >
+                    </iframe>
+                    <script is:inline src="https://links.kordian.com.br/js/form_embed.js"></script>
+                </div>
+            </div>
         </div>
     </div>
 
